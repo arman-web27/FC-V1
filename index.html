@@ -1,0 +1,1342 @@
+<!doctype html>
+<html lang="hi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width,initial-scale=1,maximum-scale=5"
+    />
+    <meta name="theme-color" content="#6f2346" />
+    <meta
+      name="description"
+      content="FibroCare — महिलाओं की uterine, menstrual और overall wellness के लिए Ayurvedic botanical support."
+    />
+    <title>FibroCare — Uterine & Menstrual Wellness Support</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Hind:wght@400;500;600;700&family=Tiro+Devanagari+Hindi&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --plum: #6f2346;
+        --rose: #e8a6b7;
+        --blush: #fff0f3;
+        --cream: #fffaf5;
+        --sage: #fff0f3;
+        --green: #365e4c;
+        --gold: #d49a45;
+        --ink: #30222a;
+        --muted: #75636c;
+        --line: #efdde3;
+        --shadow: 0 14px 38px #5c203f1f;
+        --max: 480px;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        margin: 0;
+        background: #fff0f3;
+        color: var(--ink);
+        font:
+          16px/1.55 Hind,
+          sans-serif;
+      }
+      .page {
+        max-width: var(--max);
+        margin: auto;
+        background: var(--cream);
+        overflow: hidden;
+        box-shadow: 0 0 40px #5b334333;
+      }
+      a {
+        text-decoration: none;
+        color: inherit;
+      }
+      h1,
+      h2,
+      h3,
+      p {
+        margin-top: 0;
+      }
+      h1,
+      h2 {
+        font-family: "Tiro Devanagari Hindi", serif;
+      }
+      .topbar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        padding: 16px;
+        background: var(--plum);
+        color: #fff;
+        border-bottom: 1px solid #ffffff24;
+      }
+      .header-brand { display: flex; align-items: center; gap: 10px; min-width: 0; }
+      .header-emblem { display: grid; place-items: center; flex: 0 0 40px; height: 40px; background: var(--blush); color: var(--plum); border-radius: 13px; box-shadow: 0 4px 12px #30102018; }
+      .header-emblem svg { width: 29px; height: 29px; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+      .logo { display: block; font-size: 25px; font-weight: 700; line-height: 1.15; letter-spacing: -.6px; }
+      .logo > span { color: #ffd2dd; }
+      .logo small { display: block; font-size: 7px; font-weight: 500; line-height: 1.5; letter-spacing: .7px; margin-top: 5px; color: #f1d6e1; }
+      .header-order { display: flex; align-items: center; justify-content: center; gap: 7px; flex-shrink: 0; padding: 10px 12px; border: 1px solid #ffe0e9; border-radius: 12px; background: var(--blush); color: var(--plum); font-size: 13px; font-weight: 700; white-space: nowrap; transition: background .2s ease; }
+      .header-order svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+      .header-order:hover { background: #fff; }
+      .topbar a:focus-visible { outline: 2px solid var(--gold); outline-offset: 4px; }
+      @media (max-width: 360px) {
+        .topbar { padding: 13px 12px; gap: 8px; }
+        .header-brand { gap: 7px; }
+        .header-emblem { flex-basis: 32px; height: 34px; border-radius: 10px; }
+        .header-emblem svg { width: 25px; height: 25px; }
+        .logo { font-size: 23px; }
+        .logo small { font-size: 6px; letter-spacing: .35px; }
+        .header-order { padding: 9px; font-size: 12px; gap: 5px; }
+      }
+      .hero {
+        padding: 0;
+      }
+      .hero-banner {
+        display: block;
+        width: 100%;
+        height: auto;
+      }
+      .eyebrow {
+        display: inline-block;
+        background: #fff;
+        color: var(--plum);
+        padding: 7px 12px;
+        border-radius: 99px;
+        font-size: 12px;
+        font-weight: 700;
+        box-shadow: 0 5px 18px #6f234616;
+      }
+      h1 {
+        font-size: 34px;
+        line-height: 1.2;
+        color: var(--plum);
+        margin: 20px 0 12px;
+      }
+      .lead {
+        font-size: 18px;
+        font-weight: 600;
+      }
+      .symptoms {
+        display: grid;
+        gap: 8px;
+        margin: 18px 0;
+      }
+      .symptom {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+        background: #ffffffc9;
+        padding: 10px 12px;
+        border-radius: 13px;
+        font-size: 14px;
+      }
+      .dot {
+        width: 9px;
+        height: 9px;
+        border-radius: 50%;
+        background: #c43d62;
+        flex: none;
+      }
+      .notice {
+        font-size: 13px;
+        color: var(--muted);
+        border-left: 3px solid var(--gold);
+        padding-left: 11px;
+      }
+      .cta {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        border: 0;
+        padding: 14px;
+        border-radius: 14px;
+        color: #fff;
+        background: linear-gradient(135deg, #96325f, var(--plum));
+        font-weight: 700;
+        box-shadow: 0 10px 24px #6f23463d;
+        cursor: pointer;
+      }
+      .hero-art {
+        height: 145px;
+        margin-top: 22px;
+        position: relative;
+      }
+      .orb {
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 140px;
+        height: 140px;
+        border-radius: 50%;
+        background: linear-gradient(145deg, #f6c8d4, #c87894);
+        box-shadow: inset -12px -15px 30px #8e315d33;
+      }
+      .uterus {
+        position: absolute;
+        inset: 39px 0 auto;
+        text-align: center;
+        color: #fff;
+        font-size: 60px;
+      }
+      .leaf {
+        position: absolute;
+        width: 56px;
+        height: 27px;
+        border-radius: 100% 0;
+        background: var(--green);
+      }
+      .l1 {
+        left: 65px;
+        top: 18px;
+        transform: rotate(-25deg);
+      }
+      .l2 {
+        right: 59px;
+        top: 27px;
+        transform: scaleX(-1) rotate(-20deg);
+      }
+      section {
+        padding: 38px 22px;
+      }
+      .soft {
+        background: var(--blush);
+      }
+      .dark {
+        background: var(--plum);
+        color: #fff;
+      }
+      .sage {
+        background: var(--sage);
+      }
+      .head {
+        text-align: center;
+        margin-bottom: 22px;
+      }
+      .kicker {
+        color: #96325f;
+        font-size: 18px;
+        font-weight: 700;
+        letter-spacing: 1.5px;
+        text-transform: uppercase;
+      }
+      .dark .kicker,
+      .offer .kicker {
+        color: #ffd0dc;
+      }
+      .head h2 {
+        font-size: 27px;
+        line-height: 1.3;
+        margin: 6px 0;
+      }
+      .head p {
+        color: var(--muted);
+        font-size: 15px;
+      }
+      .dark .head p {
+        color: #f2dce5;
+      }
+      .grid {
+        display: grid;
+        gap: 12px;
+      }
+      .card {
+        background: #fff;
+        border: 1px solid var(--line);
+        border-radius: 18px;
+        padding: 17px;
+        box-shadow: var(--shadow);
+      }
+      .card h3 {
+        font-size: 18px;
+        margin: 0 0 5px;
+        color: var(--plum);
+      }
+      .card p {
+        font-size: 14px;
+        color: var(--muted);
+        margin: 0;
+      }
+      .icon {
+        width: 42px;
+        height: 42px;
+        border-radius: 13px;
+        display: grid;
+        place-items: center;
+        background: var(--blush);
+        font-size: 21px;
+        margin-bottom: 10px;
+      }
+
+      .herbs,
+      .badges,
+      .offer-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+      .signs-flow { position: relative; isolation: isolate; margin-bottom: 24px; }
+      .signs-road { position: absolute; inset: 0; width: 100%; height: 100%; z-index: -1; }
+      .sign-step { min-height: 180px; display: grid; grid-template-columns: 1fr 1fr; gap: 20px; align-items: center; }
+      .sign-image { width: min(100%, 154px); aspect-ratio: 1; justify-self: center; border: 7px solid white; border-radius: 50%; background: var(--cream); box-shadow: 0 8px 22px #6f234622; overflow: hidden; }
+      .sign-image img { display: block; width: 100%; height: 100%; }
+      .sign-copy h3 { color: var(--plum); font-size: 19px; line-height: 1.3; margin: 0 0 7px; }
+      .sign-copy p { font-size: 15px; line-height: 1.5; margin: 0; }
+      .sign-step:nth-of-type(even) .sign-image { grid-column: 2; grid-row: 1; }
+      .sign-step:nth-of-type(even) .sign-copy { grid-column: 1; grid-row: 1; text-align: right; }
+      @media (max-width: 360px) { .sign-step { gap: 12px; } .sign-copy h3 { font-size: 17px; } .sign-copy p { font-size: 14px; } }
+      .caution {
+        margin-top: 14px;
+        padding: 12px;
+        border-radius: 13px;
+        background: #fff8e8;
+        color: #745d2d;
+        font-size: 12px;
+      }
+      .product {
+        background: linear-gradient(160deg, #5d1d3b, #843052);
+        color: #fff;
+      }
+      .product { padding: 26px 20px; }
+      .product-heading { text-align: center; margin-bottom: 16px; }
+      .product-kicker { font: 700 12px/1.5 Hind, sans-serif; letter-spacing: 1.5px; color: #ffd2dd; margin-bottom: 7px; }
+      .product-heading h2 { font-family: "Tiro Devanagari Hindi", serif; font-size: 27px; line-height: 1.3; font-weight: 700; margin: 6px 0 12px; }
+      .product-name { margin: 0; font: 600 24px/1.5 Hind, sans-serif; color: #ffd2dd; }
+      .product-name strong { color: #fff; font-weight: 700; }
+            .product-visual {
+        position: relative;
+        width: min(100%, 300px);
+        aspect-ratio: 1;
+        margin: 4px auto 22px;
+        padding: 14px;
+        border: 1px solid #ffffff60;
+        border-radius: 24px;
+        background: linear-gradient(145deg, #fff0f3, #f2d7e1);
+        box-shadow: 0 14px 28px #25081830, inset 0 0 0 1px #ffffff80;
+      }
+      .product-visual::before {
+        content: "";
+        position: absolute;
+        inset: 6px;
+        border: 2px dotted #b77390;
+        border-radius: 19px;
+        pointer-events: none;
+      }
+      .product-visual img { display: block; width: 100%; height: 100%; object-fit: contain; border-radius: 13px; border: 1px solid var(--line); background: var(--cream); box-shadow: 0 3px 10px #6f234612; }
+      .product-description { margin: 0 0 15px; color: #f5e6ed; font-size: 15px; line-height: 1.65; }
+      .product-description strong, .product-support strong { color: #fff; font-weight: 600; }
+      .product-list-intro { margin: 0 0 9px; font-size: 15px; font-weight: 600; line-height: 1.65; color: #ffd2dd; }
+      .product-benefits { list-style: none; margin: 0 0 14px; padding: 0; display: grid; gap: 12px; }
+      .product-benefits li { display: flex; align-items: center; gap: 15px; padding: 16px; border: 1px solid #ffffff70; border-radius: 17px; background: var(--blush); color: var(--plum); box-shadow: 0 6px 16px #25081820; font-size: 17px; line-height: 1.45; }
+      .product-benefits strong { font-weight: 600; }
+      .product-benefits .wellness-icon { display: grid; place-items: center; flex: 0 0 48px; height: 48px; border: 1px solid #d5dfd7; background: var(--sage); color: var(--green); border-radius: 14px; }
+      .wellness-icon svg { width: 30px; height: 30px; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; }
+      .product-benefits li:nth-child(2) .wellness-icon { background: #f6dce5; color: var(--plum); border-color: #ebc7d5; }
+      .product-benefits li:nth-child(3) .wellness-icon { background: #f8edda; color: #88622b; border-color: #ebddc5; }
+      .product-support { margin: 0; font-size: 15px; line-height: 1.65; color: #f5e6ed; }
+      .product-closing { margin: 16px 0; padding-top: 13px; border-top: 1px solid #ffffff26; font-family: Hind, sans-serif; font-size: 18px; line-height: 1.6; font-weight: 600; color: #ffe3ec; text-align: center; }
+      .product .product-cta { background: var(--cream); color: var(--plum); font-size: 15px; padding: 12px; }
+      @media (max-width: 360px) {
+        .product { padding: 24px 16px; }
+        .product-heading h2 { font-size: 25px; }
+        .product-name { font-size: 17px; }
+        .product-visual { max-width: 270px; padding: 12px; border-radius: 22px; }
+      }
+      .ticks {
+        list-style: none;
+        padding: 0;
+        margin: 17px 0;
+        display: grid;
+        gap: 9px;
+      }
+      .ticks li:before {
+        content: "✓";
+        font-weight: 800;
+        margin-right: 9px;
+        color: var(--gold);
+      }
+      .works-flow { list-style: none; padding: 0; margin: 28px 0 0; display: grid; gap: 32px; }
+      .works-step { min-width: 0; }
+      .works-card { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); align-items: center; gap: 44px; }
+      .works-copy {
+        grid-column: 1;
+        grid-row: 1;
+        min-width: 0;
+        padding: 15px 12px;
+        text-align: left;
+        background: #fff;
+        border: 1px solid var(--line);
+        border-radius: 13px;
+        box-shadow: 0 5px 16px #6f234610;
+      }
+      .works-copy h3 { margin: 0; color: var(--plum); font-size: 17px; line-height: 1.5; font-weight: 600; }
+      .works-image { position: relative; grid-column: 2; grid-row: 1; width: 100%; aspect-ratio: 4 / 3; padding: 6px; border: 2px dotted var(--rose); border-radius: 16px; background: var(--cream); }
+      .works-image::before { content: ""; position: absolute; top: -3px; left: -3px; width: calc(50% + 3px); height: calc(50% + 3px); border-top: 4px solid var(--rose); border-left: 4px solid var(--rose); border-top-left-radius: 17px; pointer-events: none; }
+      .works-image::after { content: ""; position: absolute; top: calc(50% - 2px); left: -28px; width: 28px; height: 4px; background: var(--rose); pointer-events: none; }
+      .works-image img { display: block; width: 100%; height: 100%; aspect-ratio: 4 / 3; object-fit: cover; border-radius: 9px; background: #fff; box-shadow: 0 5px 14px #6f234612; }
+      .works-number { position: absolute; z-index: 1; top: calc(50% - 12px); left: -39px; display: grid; place-items: center; width: 24px; height: 24px; border: 2px solid #fff; border-radius: 50%; background: var(--plum); color: #fff; font-size: 9px; font-weight: 700; }
+      @media (max-width: 360px) {
+        .works-flow { gap: 26px; }
+        .works-card { gap: 38px; }
+        .works-copy { padding: 12px 9px; }
+        .works-copy h3 { font-size: 15px; }
+        .works-image { padding: 5px; border-radius: 13px; }
+        .works-image img { border-radius: 7px; }
+        .works-image::after { left: -24px; width: 24px; }
+        .works-number { left: -34px; width: 22px; height: 22px; top: calc(50% - 11px); }
+      }
+      .action {
+        display: grid;
+        grid-template-columns: 46px 1fr;
+        gap: 12px;
+      }
+      .action + .action {
+        margin-top: 12px;
+      }
+      .num {
+        width: 46px;
+        height: 46px;
+        border-radius: 14px;
+        background: var(--plum);
+        color: #fff;
+        display: grid;
+        place-items: center;
+        font-weight: 700;
+      }
+      .action .card {
+        box-shadow: none;
+      }
+      .focus {
+        display: block;
+        margin-top: 8px;
+        color: #96325f;
+        font-size: 11px;
+        font-weight: 700;
+      }
+      .expert {
+        background: #fff;
+        color: var(--ink);
+        border-radius: 20px;
+        padding: 19px;
+        margin-top: 12px;
+      }
+      .avatar {
+        width: 48px;
+        height: 48px;
+        border-radius: 50%;
+        background: var(--blush);
+        display: grid;
+        place-items: center;
+        font-size: 25px;
+      }
+      .expert blockquote {
+        margin: 12px 0;
+        color: var(--muted);
+        font-size: 14px;
+      }
+      .expert strong {
+        color: var(--plum);
+      }
+      .expert small,
+      .review small {
+        display: block;
+        color: var(--muted);
+      }
+      .expert-quotes { display: grid; gap: 20px; }
+      .expert-guidance .expert { margin: 0; padding: 23px 20px; border: 1px solid var(--line); border-radius: 24px; box-shadow: 0 12px 28px #30102025; }
+      .expert-card-heading { display: flex; align-items: flex-start; gap: 13px; margin-bottom: 20px; }
+      .expert-card-heading .avatar { flex: 0 0 48px; border: 1px solid var(--line); }
+      .expert-card-heading h3 { color: var(--plum); font-size: 19px; line-height: 1.5; margin: 0; font-weight: 600; }
+      .expert-guidance blockquote { border-left: 3px solid var(--rose); padding-left: 15px; margin: 0 0 22px; color: var(--ink); font-size: 16px; line-height: 1.85; }
+      .expert-guidance blockquote p { margin: 0; }
+      .expert-author { border-top: 1px solid var(--line); padding-top: 15px; }
+      .expert-author strong { display: block; font-size: 17px; margin-bottom: 5px; }
+      .expert-author small { font-size: 12px; line-height: 1.65; }
+      @media (max-width: 360px) {
+        .expert-guidance .expert { padding: 20px 16px; }
+        .expert-card-heading { gap: 10px; }
+        .expert-card-heading h3 { font-size: 18px; }
+        .expert-guidance blockquote { font-size: 15px; padding-left: 12px; }
+      }
+      .stars {
+        color: var(--gold);
+        letter-spacing: 2px;
+      }
+      .review q {
+        display: block;
+        margin: 8px 0;
+      }
+      .review-person { display: flex; align-items: center; gap: 12px; margin: 16px 0 20px; }
+      .review-avatar { flex: 0 0 72px; width: 72px; height: 72px; object-fit: cover; border-radius: 50%; border: 3px solid var(--blush); box-shadow: 0 4px 12px #6f234618; }
+      .review-person strong { display: block; color: var(--plum); font-size: 17px; }
+      .review-person span { display: block; color: var(--muted); font-size: 12px; line-height: 1.6; }
+      .review-person small { display: block; color: var(--plum); font-size: 11px; margin-top: 4px; }
+      .customer-reviews { display: grid; gap: 18px; }
+      .customer-experiences .review { position: relative; padding: 22px; border-radius: 24px; box-shadow: 0 8px 24px #6f23460d; }
+      .review-quote-mark { display: block; height: 34px; font-family: Georgia, serif; font-size: 56px; line-height: 1; color: var(--rose); margin-bottom: 10px; }
+      .customer-experiences .review h3 { font-size: 20px; line-height: 1.5; margin: 0 0 10px; }
+      .customer-experiences .review-attribution { font-size: 12px; font-weight: 600; color: var(--plum); margin-bottom: 18px; }
+      .customer-experiences blockquote { margin: 0 0 18px; }
+      .customer-experiences blockquote p { font-size: 15px; line-height: 1.85; color: var(--muted); margin: 0; }
+      .review-rating { border-top: 1px solid var(--line); padding-top: 13px; }
+      .review-rating .stars { font-size: 19px; letter-spacing: 3px; }
+      .review-note { margin-top: 20px; padding: 16px 18px; border: 1px solid var(--line); border-left: 3px solid var(--gold); border-radius: 14px; background: #ffffff80; }
+      .review-note h3 { margin: 0 0 6px; font-size: 15px; color: var(--plum); }
+      .review-note p { margin: 0; font-size: 13px; line-height: 1.7; color: var(--muted); }
+      .herb {
+        text-align: center;
+      }
+      .ingredients { padding-left: 15px; padding-right: 15px; }
+      .ingredients .ingredient-flow { grid-template-columns: 1fr; gap: 24px; padding: 0; margin: 0; list-style: none; }
+      .ingredient-step { position: relative; width: min(390px, 100%); padding-left: 44px; margin: 0 auto; }
+      .ingredient-step:not(:last-child)::before { content: ""; position: absolute; left: 15px; top: 46px; bottom: -38px; width: 2px; background: var(--rose); }
+      .ingredient-step-number { position: absolute; z-index: 2; top: 14px; left: 0; width: 32px; height: 32px; display: grid; place-items: center; border: 2px solid var(--cream); border-radius: 50%; background: var(--plum); color: #fff; font-size: 11px; font-weight: 700; box-shadow: 0 3px 8px #6f234618; }
+      .ingredients .herb { position: relative; display: grid; grid-template-columns: 1fr; grid-template-rows: minmax(0, 1fr) auto; width: 100%; aspect-ratio: 1; padding: 0; overflow: hidden; text-align: left; border-radius: 18px; box-shadow: 0 7px 20px #6f234610; }
+      .ingredient-image { display: block; width: 100%; height: 100%; min-height: 0; object-fit: cover; background: var(--cream); border: 3px dotted var(--rose); border-radius: 12px; padding: 5px; }
+      .ingredient-copy { padding: 14px 16px; border-top: 1px solid var(--line); background: #fff; }
+      .ingredients .herb h3 { margin: 0 0 7px; color: var(--plum); font-size: 20px; line-height: 1.4; }
+      .ingredients .herb p { margin: 0; font-size: 13px; line-height: 1.65; }
+      .ingredients .herb:last-child:nth-child(odd) { grid-column: auto; }
+      @media (max-width: 360px) {
+        .ingredient-copy { padding: 13px 15px; }
+        .ingredients .herb h3 { font-size: 20px; }
+        .ingredients .herb p { font-size: 13px; }
+      }
+      .botanical {
+        width: 58px;
+        height: 58px;
+        margin: 0 auto 9px;
+        border-radius: 50%;
+        display: grid;
+        place-items: center;
+        background: var(--sage);
+        font-size: 27px;
+      }
+      .herb:last-child:nth-child(odd) {
+        grid-column: 1/-1;
+      }
+      .badge {
+        text-align: center;
+        background: #ffffffaa;
+        border: 1px solid #ccd9cf;
+        border-radius: 16px;
+        padding: 15px 8px;
+      }
+      .badge b {
+        display: block;
+        color: var(--green);
+      }
+      .quality-cards { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+      .quality-card { margin: 0; overflow: hidden; background: #fff; border: 1px solid #ccd9cf; border-radius: 18px; box-shadow: 0 8px 20px #365e4c10; }
+      .quality-card img { display: block; width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: contain; border-bottom: 1px solid #e1e8df; }
+      .quality-card figcaption { padding: 15px 10px 18px; text-align: center; }
+      .quality-card h3 { margin: 0 0 5px; color: var(--green); font-size: 20px; }
+      .quality-card p { margin: 0; color: var(--muted); font-size: 12px; line-height: 1.6; }
+      @media (max-width: 360px) { .quality-cards { gap: 12px; } .quality-card h3 { font-size: 18px; } }
+      .cert-note {
+        font-size: 11px;
+        color: var(--muted);
+        text-align: center;
+        margin-top: 14px;
+      }
+      .offer {
+        background: linear-gradient(145deg, #6f2346, #9f3e67);
+        color: #fff;
+      }
+      .offer-box { border: 1px solid #ffffff38; border-radius: 26px; padding: 24px 20px; background: #ffffff06; box-shadow: 0 16px 32px #3810251a; }
+      .offer svg { display: block; width: 24px; height: 24px; fill: none; stroke: currentColor; stroke-width: 1.7; stroke-linecap: round; stroke-linejoin: round; flex: none; }
+      .offer-label { display: flex; justify-content: center; align-items: center; gap: 9px; color: #ffd1dc; font-size: 14px; font-weight: 600; line-height: 1.5; text-align: center; }
+      .offer-label svg { width: 21px; height: 21px; }
+      .big-off { font-family: Hind, sans-serif; font-size: clamp(56px, 15vw, 72px); font-weight: 700; color: #ffd1dc; line-height: 1.15; margin: 18px 0 8px; text-align: center; letter-spacing: -2px; }
+      .big-off span { font-size: .52em; letter-spacing: 1px; }
+      .offer-intro { margin: 0; text-align: center; font-size: 15px; line-height: 1.7; color: #f8e5ed; }
+      .offer-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; margin: 24px 0; }
+      .offer-item { display: flex; flex-direction: column; align-items: center; gap: 11px; background: #ffffff0d; border: 1px solid #ffffff24; border-radius: 16px; padding: 17px 8px; text-align: center; }
+      .offer-icon { display: grid; place-items: center; width: 44px; height: 44px; background: #fff0f3; color: var(--plum); border-radius: 13px; }
+      .offer-item b { display: block; font-size: 13px; line-height: 1.45; font-weight: 600; }
+      .offer .offer-cta { align-items: center; gap: 10px; background: #fff; color: var(--plum); font-size: 15px; padding: 15px 10px; }
+      .offer-cta svg { width: 20px; height: 20px; }
+      .offer .offer-cta:focus-visible { outline: 3px solid var(--gold); outline-offset: 4px; }
+      .offer-sticker-stage { position: relative; display: grid; place-items: center; min-height: 218px; margin: 14px 0 12px; }
+      .offer-sticker { position: relative; display: flex; flex-direction: column; align-items: center; justify-content: center; width: 190px; height: 190px; color: var(--plum); isolation: isolate; transform: rotate(-7deg); animation: offer-float 5s ease-in-out infinite; filter: drop-shadow(0 10px 12px #30102038); }
+      .offer-sticker::before { content: ""; position: absolute; inset: 0; z-index: -1; background: #ffd6e1; clip-path: polygon(50% 0%,60% 6%,71% 4%,78% 14%,89% 18%,91% 30%,100% 39%,96% 50%,100% 61%,91% 70%,89% 82%,78% 86%,71% 96%,60% 94%,50% 100%,40% 94%,29% 96%,22% 86%,11% 82%,9% 70%,0% 61%,4% 50%,0% 39%,9% 30%,11% 18%,22% 14%,29% 4%,40% 6%); }
+      .offer-sticker::after { content: ""; position: absolute; inset: 19px; border: 1px dashed #96325f70; border-radius: 50%; pointer-events: none; }
+      .offer-sticker-caption { font-size: 10px; font-weight: 700; letter-spacing: 1.1px; }
+      .offer-sticker .big-off { color: var(--plum); font-size: 60px; line-height: 1; margin: 9px 0 5px; }
+      .offer-sticker .big-off span { display: block; font-size: 25px; letter-spacing: 4px; margin-top: 3px; }
+      .offer-sticker-note { font-size: 12px; margin-top: 5px; font-weight: 600; }
+      .offer-spark { position: absolute; color: #f4c784; font-size: 28px; animation: offer-sparkle 4s ease-in-out infinite; }
+      .offer-spark-one { left: 7%; top: 22%; }
+      .offer-spark-two { right: 6%; bottom: 20%; font-size: 20px; animation-delay: 1s; }
+      .offer-spark-three { right: 11%; top: 15%; width: 9px; height: 9px; border: 2px solid #ffd6e1; border-radius: 50%; animation-delay: 2s; }
+      .offer .offer-cta { position: relative; overflow: hidden; isolation: isolate; transition: transform .2s ease, box-shadow .2s ease; }
+      .offer .offer-cta::after { content: ""; position: absolute; inset: 0; pointer-events: none; background: linear-gradient(110deg, transparent 35%, #e8a6b740 50%, transparent 65%); transform: translateX(-120%); animation: offer-shine 7s ease-in-out infinite; }
+      .offer .offer-cta:hover { transform: translateY(-2px); box-shadow: 0 12px 26px #30102040; }
+      @keyframes offer-float { 0%,100% { transform: translateY(0) rotate(-7deg); } 50% { transform: translateY(-6px) rotate(-3deg); } }
+      @keyframes offer-sparkle { 0%,100% { opacity: .55; transform: scale(.85); } 50% { opacity: 1; transform: scale(1); } }
+      @keyframes offer-shine { 0%,70% { transform: translateX(-120%); } 95%,100% { transform: translateX(120%); } }
+      @media (prefers-reduced-motion: reduce) {
+        .offer-sticker, .offer-spark, .offer .offer-cta::after { animation: none; }
+        .offer .offer-cta { transition: none; }
+        .offer .offer-cta:hover { transform: none; }
+      }
+      .buy {
+        text-align: center;
+      }
+      .buy-name {
+        font-size: 28px;
+        color: var(--plum);
+        font-weight: 700;
+      }
+      #order-form .order-icon { width: 22px; height: 22px; flex: none; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+      #order-form .order-heading, #order-form .order-icon-line { display: flex; align-items: center; justify-content: center; gap: 9px; }
+      #order-form .order-heading .order-icon { width: 28px; height: 28px; color: var(--plum); }
+      #order-form .secure .order-icon { width: 16px; height: 16px; }
+      .form-card {
+        background: #fff;
+        border-radius: 22px;
+        padding: 20px;
+        box-shadow: var(--shadow);
+      }
+      .field {
+        margin-bottom: 14px;
+      }
+      .field label {
+        display: block;
+        font-weight: 600;
+        margin-bottom: 6px;
+      }
+      .field input {
+        width: 100%;
+        border: 1px solid var(--line);
+        padding: 13px;
+        border-radius: 12px;
+        outline: none;
+        font: inherit;
+      }
+      .field input:focus {
+        border-color: #96325f;
+        box-shadow: 0 0 0 3px #e8a6b733;
+      }
+      .err {
+        display: none;
+        color: #b42318;
+        font-size: 12px;
+      }
+      .err.show {
+        display: block;
+      }
+      .benefit {
+        background: var(--blush);
+        color: var(--plum);
+        border-radius: 12px;
+        padding: 11px;
+        text-align: center;
+        font-size: 13px;
+        margin-bottom: 13px;
+      }
+      .secure {
+        text-align: center;
+        color: var(--muted);
+        font-size: 11px;
+        margin-top: 9px;
+      }
+      .faq {
+        border-bottom: 1px solid var(--line);
+      }
+      .faq button {
+        width: 100%;
+        border: 0;
+        background: none;
+        padding: 15px 0;
+        display: flex;
+        justify-content: space-between;
+        text-align: left;
+        font: 600 15px Hind;
+        color: var(--ink);
+      }
+      .faq button span {
+        color: var(--plum);
+        font-size: 20px;
+      }
+      .answer {
+        display: none;
+        padding-bottom: 15px;
+        color: var(--muted);
+        font-size: 14px;
+      }
+      .faq.open .answer {
+        display: block;
+      }
+      .disclaimer {
+        padding: 12px 10px 4px;
+        background: var(--blush);
+        color: #8c7c84;
+        font-size: 9px; line-height: 1.65;
+      }
+      .policy {
+        padding: 0 8px 82px;
+        background: var(--blush);
+        display: flex;
+        gap: 13px;
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+      .policy button {
+        border: 0;
+        background: none;
+        color: #8c7c84;
+        font-size: 9px; cursor: pointer;
+      }
+      .sticky {
+        position: fixed;
+        bottom: 0;
+        left: 50%;
+        transform: translate(-50%, 110%);
+        width: min(100%, var(--max));
+        padding: 10px 15px;
+        background: #fff;
+        box-shadow: 0 -8px 24px #4c20301f;
+        z-index: 10;
+        transition: 0.25s;
+      }
+      .sticky.show {
+        transform: translate(-50%, 0);
+      }
+      .sticky a {
+        display: block;
+        text-align: center;
+        background: var(--plum);
+        color: #fff;
+        border-radius: 12px;
+        padding: 12px;
+        font-weight: 700;
+      }
+      .sticky a { display: flex; align-items: center; justify-content: center; gap: 9px; }
+      .sticky-icon { width: 22px; height: 22px; flex: none; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+      .loading,
+      .modal {
+        display: none;
+        position: fixed;
+        inset: 0;
+        background: #26121dcc;
+        z-index: 30;
+        place-items: center;
+        padding: 20px;
+      }
+      .loading.show,
+      .modal.show {
+        display: grid;
+      }
+      .loading-box,
+      .modal-box {
+        background: #fff;
+        border-radius: 18px;
+        padding: 25px;
+        text-align: center;
+        max-width: 430px;
+      }
+      .modal-box {
+        position: relative;
+        text-align: left;
+      }
+      .modal-close {
+        position: absolute;
+        right: 10px;
+        top: 6px;
+        border: 0;
+        background: none;
+        font-size: 25px;
+      }
+      .modal-box h2 {
+        color: var(--plum);
+      }
+      .modal-box p {
+        color: var(--muted);
+      }
+      .modal-box { width: min(100%, 430px); max-height: 85vh; max-height: 85dvh; overflow-y: auto; overscroll-behavior: contain; padding-top: 40px; }
+      .pp-mtitle { display: flex; align-items: center; gap: 10px; color: var(--plum); margin-bottom: 12px; }
+      .pp-mtitle h2 { margin: 0; font: 700 22px/1.3 Hind, sans-serif; }
+      #modalContent svg { width: 24px; height: 24px; flex: none; color: var(--plum); }
+      .pp-mbadge { display: inline-block; padding: 5px 10px; border-radius: 8px; background: var(--sage); color: var(--green); font-size: 12px; margin-bottom: 16px; }
+      .pp-mpara, .pp-mlist { font-size: 14px; line-height: 1.75; color: var(--muted); }
+      .pp-mlist { padding-left: 20px; }
+      .pp-mlist li { margin-bottom: 7px; }
+      .pp-mhl { padding: 13px; margin: 16px 0; border-left: 3px solid var(--rose); border-radius: 8px; background: var(--blush); color: var(--plum); font-size: 13px; line-height: 1.7; }
+      .pp-cgrid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+      .pp-citem { padding: 13px; border: 1px solid var(--line); border-radius: 12px; }
+      .pp-clbl { font-size: 11px; color: var(--muted); margin-top: 8px; }
+      .pp-cval { font-size: 13px; color: var(--plum); overflow-wrap: anywhere; }
+      .policy button:hover { color: var(--plum); text-decoration: underline; }
+      .policy button:focus-visible { outline: 2px solid var(--plum); outline-offset: 3px; }
+      .spinner {
+        width: 35px;
+        height: 35px;
+        border: 4px solid var(--line);
+        border-top-color: var(--plum);
+        border-radius: 50%;
+        animation: spin 0.8s linear infinite;
+        margin: auto;
+      }
+      @keyframes spin {
+        to {
+          transform: rotate(360deg);
+        }
+      }
+      @media (min-width: 481px) {
+        body {
+          padding: 0;
+        }
+        .page {
+          border-radius: 0;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="page">
+      <header class="topbar">
+        <a class="header-brand" href="#hero" aria-label="FibroCare — Home">
+          <span class="header-emblem" aria-hidden="true"><svg viewBox="0 0 32 32"><path d="M9 23C3 13 11 6 25 6c1 14-5 22-16 17Z"/><path d="M7 27 22 11M12 22l-1-8m6 3h6"/></svg></span>
+          <span class="logo">Fibro<span>Care</span><small>WOMEN'S AYURVEDIC WELLNESS</small></span>
+        </a>
+        <a class="header-order" href="#order-form"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 7h14l1 14H4L5 7ZM8 8V6a4 4 0 0 1 8 0v2"/></svg><span>Order करें</span></a>
+      </header>
+      <section class="hero" id="hero" aria-label="FibroCare banner">
+        <img
+          class="hero-banner"
+          src="/images/banner.png"
+          alt="FibroCare banner placeholder"
+          width="960"
+          height="720"
+          fetchpriority="high"
+        />
+      </section>
+      <section class="soft" id="problem">
+        <div class="head">
+          <div class="kicker">Know the signs</div>
+          <h2>जब हर महीने Periods परेशानी बन जाएँ…</h2>
+          <p>
+            Fibroid से जुड़े कुछ symptoms रोजमर्रा की जिंदगी को प्रभावित कर सकते
+            हैं।
+          </p>
+        </div>
+        <div class="signs-flow">
+          <svg class="signs-road" viewBox="0 0 436 1080" preserveAspectRatio="none" aria-hidden="true">
+            <defs>
+              <linearGradient id="signs-gradient" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#ccdcd0"/><stop offset=".5" stop-color="#e8a6b7"/><stop offset="1" stop-color="#bf7896"/></linearGradient>
+              <path id="signs-path" d="M-20 12H108C240 12 240 180 218 180S318 180 318 270 118 360 118 450 318 540 318 630 118 720 118 810 318 900 318 990Q318 1068 218 1068H-20"/>
+            </defs>
+            <use href="#signs-path" fill="none" stroke="url(#signs-gradient)" stroke-width="32"/>
+            <use href="#signs-path" fill="none" stroke="#6f2346" stroke-opacity=".45" stroke-width="2" stroke-dasharray="10 13"/>
+          </svg>
+          <article class="sign-step"><div class="sign-image"><img src="/images/sign1.png" alt="" width="160" height="160" loading="lazy" /></div><div class="sign-copy"><h3>Heavy Bleeding</h3><p>बार-बार pad बदलना और लंबे समय तक bleeding.</p></div></article>
+          <article class="sign-step"><div class="sign-image"><img src="/images/sign2.png" alt="" width="160" height="160" loading="lazy" /></div><div class="sign-copy"><h3>Pain & Cramps</h3><p>Periods में पेट के निचले हिस्से में दर्द.</p></div></article>
+          <article class="sign-step"><div class="sign-image"><img src="/images/sign3.png" alt="" width="160" height="160" loading="lazy" /></div><div class="sign-copy"><h3>Pelvic Pressure</h3><p>भारीपन, pressure या discomfort.</p></div></article>
+          <article class="sign-step"><div class="sign-image"><img src="/images/sign4.png" alt="" width="160" height="160" loading="lazy" /></div><div class="sign-copy"><h3>बार-बार पेशाब</h3><p>Bladder पर pressure के कारण इच्छा बढ़ना.</p></div></article>
+          <article class="sign-step"><div class="sign-image"><img src="/images/sign5.png" alt="" width="160" height="160" loading="lazy" /></div><div class="sign-copy"><h3>कमजोरी</h3><p>Heavy bleeding से iron deficiency का जोखिम.</p></div></article>
+          <article class="sign-step"><div class="sign-image"><img src="/images/sign6.png" alt="" width="160" height="160" loading="lazy" /></div><div class="sign-copy"><h3>Daily Life</h3><p>काम, यात्रा, नींद और routine पर असर.</p></div></article>
+        </div>
+      </section>
+      <section class="product" aria-labelledby="product-title">
+        <div class="product-heading">
+          <h2 id="product-title">अब अपनी Uterine Wellness का भी ध्यान रखें</h2>
+          <h3 class="product-name">Introducing — <strong>Fibro Care</strong></h3>
+        </div>
+        <figure class="product-visual">
+          <img src="images/capsule.png" alt="Fibro Care dietary supplement की बोतल और जार" width="1254" height="1254" loading="lazy" />
+        </figure>
+        <p class="product-description">Fibro Care एक <strong>herbal dietary supplement formulation</strong> है, जिसमें पारंपरिक Ayurvedic botanical ingredients का संयोजन किया गया है।</p>
+        <div class="product-wellness">
+          <p class="product-list-intro">इसे महिलाओं की:</p>
+          <ul class="product-benefits">
+            <li><span class="wellness-icon" aria-hidden="true"><svg viewBox="0 0 32 32"><path d="M12 12c-3-6-9-7-9-2 0 3 3 4 5 2m12 0c3-6 9-7 9-2 0 3-3 4-5 2M11 12c0 5 2 7 5 10 3-3 5-5 5-10M16 22v6"/><path d="M11 12q5 3 10 0"/><circle cx="8" cy="13" r="2"/><circle cx="24" cy="13" r="2"/></svg></span><strong>Uterine Wellness</strong></li>
+            <li><span class="wellness-icon" aria-hidden="true"><svg viewBox="0 0 32 32"><rect x="5" y="7" width="22" height="22" rx="4"/><path d="M10 3v7m12-7v7M5 14h22"/><path d="M16 17c-1 2-4 5-4 7a4 4 0 0 0 8 0c0-2-3-5-4-7Z"/></svg></span><strong>Menstrual Wellness</strong></li>
+            <li><span class="wellness-icon" aria-hidden="true"><svg viewBox="0 0 32 32"><path d="M16 27 5 16C-2 8 10 1 16 9c6-8 18-1 11 7Z"/><path d="M16 23v-8m0 4c-5 0-6-4-6-4 5 0 6 4 6 4Zm0-2c5 0 6-5 6-5-5 0-6 5-6 5Z"/></svg></span><strong>Overall Women’s Wellness</strong></li>
+          </ul>
+          <p class="product-support">को <strong>support</strong> करने के उद्देश्य से formulated किया गया है।</p>
+        </div>
+        <h3 class="product-closing">प्रकृति से प्रेरित देखभाल — आपकी daily wellness के लिए।</h3>
+        <a href="#actions" class="cta product-cta">Fibro Care के बारे में जानें →</a>
+      </section>
+      <section id="actions">
+        <div class="head">
+          <div class="kicker">HOW FIBRO CARE WORKS</div>
+          <h2>5 Powerful Ayurvedic Actions — महिलाओं की मुख्य परेशानियों पर Focus</h2>
+        </div>
+        <ol class="works-flow">
+          <li class="works-step">
+            <article class="works-card">
+              <div class="works-image"><img src="images/action1.png" alt="Botanical illustration of flowers, leaves and resin" width="120" height="120" loading="lazy" /><span class="works-number" aria-hidden="true">01</span></div>
+              <div class="works-copy">
+                <h3>गांठों को कम करने में सहायक</h3></div>
+            </article>
+          </li>
+          <li class="works-step">
+            <article class="works-card">
+              <div class="works-image"><img src="images/action2.png" alt="Botanical illustration of bark and leaves" width="120" height="120" loading="lazy" /><span class="works-number" aria-hidden="true">02</span></div>
+              <div class="works-copy">
+                <h3>Heavy Bleeding पर नियंत्रण में सहायक</h3></div>
+            </article>
+          </li>
+          <li class="works-step">
+            <article class="works-card">
+              <div class="works-image"><img src="images/action3.png" alt="Botanical illustration of cloves and roots" width="120" height="120" loading="lazy" /><span class="works-number" aria-hidden="true">03</span></div>
+              <div class="works-copy">
+                <h3>दर्द और सूजन से राहत में सहायक</h3></div>
+            </article>
+          </li>
+          <li class="works-step">
+            <article class="works-card">
+              <div class="works-image"><img src="images/action4.png" alt="Botanical illustration of shatavari roots" width="120" height="120" loading="lazy" /><span class="works-number" aria-hidden="true">04</span></div>
+              <div class="works-copy">
+                <h3>महिला Reproductive Wellness को Support</h3></div>
+            </article>
+          </li>
+          <li class="works-step">
+            <article class="works-card">
+              <div class="works-image"><img src="images/action5.png" alt="Botanical illustration of mixed herbs" width="120" height="120" loading="lazy" /><span class="works-number" aria-hidden="true">05</span></div>
+              <div class="works-copy">
+                <h3>Ayurvedic Herbal Formulation</h3></div>
+            </article>
+          </li>
+        </ol>
+      </section>
+      <section class="dark expert-guidance" aria-labelledby="expert-title">
+        <div class="head">
+          <div class="kicker">Expert guidance</div>
+          <h2 id="expert-title">Experts की राय भी है जरूरी</h2>
+        </div>
+        <div class="expert-quotes">
+          <article class="expert">
+            <div class="expert-card-heading">
+              <div class="avatar" aria-hidden="true">👩‍⚕️</div>
+              <h3>Fibroid और महिलाओं की Uterine Health को लेकर सही जानकारी क्यों जरूरी है?</h3>
+            </div>
+            <blockquote>
+              <p>“हर महिला में Fibroid के symptoms अलग हो सकते हैं। Heavy bleeding, pelvic pain या pressure जैसी परेशानियों को लंबे समय तक ignore नहीं करना चाहिए। सही diagnosis के बाद ही उचित treatment का निर्णय लिया जाना चाहिए।”</p>
+            </blockquote>
+            <footer class="expert-author">
+              <!-- Replace the doctor name and affiliation with verified attribution before publishing. -->
+              <strong>— डॉ. __________</strong>
+              <small><em>Gynecologist / Ayurvedic Physician, ________</em></small>
+            </footer>
+          </article>
+          <article class="expert">
+            <div class="expert-card-heading">
+              <div class="avatar" aria-hidden="true">👩‍⚕️</div>
+              <h3>“पहले समस्या को समझें, फिर सही कदम उठाएं”</h3>
+            </div>
+            <blockquote>
+              <p>“महिलाओं को अपने menstrual health और uterine wellness को लेकर जागरूक रहना चाहिए। Herbal wellness supplements को balanced diet और healthy lifestyle के साथ support के रूप में देखा जा सकता है, लेकिन medical condition में professional guidance जरूरी है।”</p>
+            </blockquote>
+            <footer class="expert-author">
+              <!-- Replace the doctor name and affiliation with verified attribution before publishing. -->
+              <strong>— डॉ. __________</strong>
+              <small><em>Ayurvedic Physician / Women's Health Specialist, ________</em></small>
+            </footer>
+          </article>
+        </div>
+      </section>
+      <section class="soft customer-experiences" aria-labelledby="reviews-title">
+        <div class="head">
+          <div class="kicker">ILLUSTRATIVE WELLNESS STORIES</div>
+          <h2 id="reviews-title">महिलाओं की wellness — उदाहरण</h2><p>ये काल्पनिक उदाहरण हैं, verified customer reviews नहीं।</p>
+        </div>
+        <!-- Editorial note: Verify the customer-count claim and all reviews against genuine, consented customer records before publishing. Never invent names, cities, ages, or guaranteed-result testimonials. -->
+        <div class="customer-reviews">
+          <article class="card review">
+            <span class="review-quote-mark" aria-hidden="true">“</span>
+            <h3>“मेरे periods में पहले काफी discomfort रहता था...”</h3>
+            <div class="review-person"><img class="review-avatar" src="images/review-pooja.png" alt="AI-generated portrait of a fictional woman" width="72" height="72" loading="lazy" /><div><strong>पूजा शर्मा</strong><span><b>38 वर्ष</b> — Jaipur, Rajasthan</span><small>काल्पनिक उदाहरण · AI-generated portrait</small></div></div>
+            <blockquote><p>“मैंने अपनी routine में Fibro Care को शामिल किया। कुछ समय बाद मुझे अपनी overall menstrual wellness में improvement महसूस हुआ।”</p></blockquote>
+            
+          </article>
+          <article class="card review">
+            <span class="review-quote-mark" aria-hidden="true">“</span>
+            <h3>“पहले हर महीने बहुत परेशानी रहती थी...”</h3>
+            <div class="review-person"><img class="review-avatar" src="images/review-neha.png" alt="AI-generated portrait of a fictional woman" width="72" height="72" loading="lazy" /><div><strong>नेहा वर्मा</strong><span><b>34 वर्ष</b> — Lucknow, Uttar Pradesh</span><small>काल्पनिक उदाहरण · AI-generated portrait</small></div></div>
+            <blockquote><p>“Periods के दौरान होने वाली परेशानी की वजह से मेरा routine disturb होता था। अब मैं अपनी health को लेकर ज्यादा conscious हूँ और अपनी routine का भी ध्यान रखती हूँ।”</p></blockquote>
+            
+          </article>
+          <article class="card review">
+            <span class="review-quote-mark" aria-hidden="true">“</span>
+            <h3>“मैंने पहले अपनी symptoms को ignore किया था...”</h3>
+            <div class="review-person"><img class="review-avatar" src="images/review-sunita.png" alt="AI-generated portrait of a fictional woman" width="72" height="72" loading="lazy" /><div><strong>सुनीता यादव</strong><span><b>42 वर्ष</b> — Bhopal, Madhya Pradesh</span><small>काल्पनिक उदाहरण · AI-generated portrait</small></div></div>
+            <blockquote><p>“बाद में मैंने doctor से consultation लिया और अपनी condition को समझा। साथ में अपनी daily wellness routine पर भी ध्यान देना शुरू किया।”</p></blockquote>
+            
+          </article>
+        </div>
+        <aside class="review-note" aria-labelledby="review-note-title">
+          <h3 id="review-note-title">⚠️ Important</h3>
+          <p>Customer experiences individual हैं। Results व्यक्ति-विशेष के अनुसार अलग हो सकते हैं।</p>
+        </aside>
+      </section>
+      <section class="ingredients" aria-labelledby="ingredients-title">
+        <div class="head">
+          <div class="kicker">From Ayurveda</div>
+          <h2 id="ingredients-title">5 Traditional Ayurvedic Ingredients</h2>
+        </div>
+        <ol class="grid herbs ingredient-flow">
+          <li class="ingredient-step"><span class="ingredient-step-number" aria-hidden="true">01</span><article class="card herb"><img class="ingredient-image" src="images/ingredient-kanchanar.png" alt="कांचनार के फूल और गुग्गुल का botanical illustration" width="800" height="600" loading="lazy" /><footer class="ingredient-copy"><h3>कांचनार गुग्गुल</h3>
+            <p>पारंपरिक Ayurvedic formulations में उपयोग किया जाने वाला botanical ingredient।</p></footer></article></li>
+          <li class="ingredient-step"><span class="ingredient-step-number" aria-hidden="true">02</span><article class="card herb"><img class="ingredient-image" src="images/ingredient-ashoka.png" alt="अशोक छाल का botanical illustration" width="800" height="600" loading="lazy" /><footer class="ingredient-copy"><h3>अशोक छाल</h3>
+            <p>महिलाओं की traditional wellness formulations में लंबे समय से प्रयुक्त ingredient।</p></footer></article></li>
+          <li class="ingredient-step"><span class="ingredient-step-number" aria-hidden="true">03</span><article class="card herb"><img class="ingredient-image" src="images/ingredient-shatavari.png" alt="शतावरी की जड़ों का botanical illustration" width="800" height="600" loading="lazy" /><footer class="ingredient-copy"><h3>शतावरी</h3>
+            <p>महिलाओं की overall wellness के लिए traditional Ayurveda में उपयोग किया जाने वाला botanical।</p></footer></article></li>
+          <li class="ingredient-step"><span class="ingredient-step-number" aria-hidden="true">04</span><article class="card herb"><img class="ingredient-image" src="images/ingredient-clove.png" alt="लौंग का botanical illustration" width="800" height="600" loading="lazy" /><footer class="ingredient-copy"><h3>लौंग</h3>
+            <p>अपने traditional botanical use के लिए जाना जाने वाला ingredient।</p></footer></article></li>
+          <li class="ingredient-step"><span class="ingredient-step-number" aria-hidden="true">05</span><article class="card herb"><img class="ingredient-image" src="images/ingredient-dashmool.png" alt="दशमूल की मिश्रित जड़ों का botanical illustration" width="800" height="600" loading="lazy" /><footer class="ingredient-copy"><h3>दशमूल</h3>
+            <p>Ayurvedic tradition में उपयोग किया जाने वाला multi-herb formulation।</p></footer></article></li>
+        </ol>
+      </section>
+      <section class="sage quality-section" aria-labelledby="quality-title">
+        <div class="head">
+          <div class="kicker">Quality first</div>
+          <h2 id="quality-title">Quality के साथ कोई समझौता नहीं</h2>
+        </div>
+        <!-- Replace each placeholder image with its genuine supporting document. -->
+        <div class="grid quality-cards">
+          <figure class="quality-card">
+            <img src="images/cert1.png" alt="GMP document placeholder; actual certificate not provided" width="480" height="360" loading="lazy" />
+            <figcaption><h3>GMP</h3><p>Good Manufacturing Practices</p></figcaption>
+          </figure>
+          <figure class="quality-card">
+            <img src="images/cert2.png" alt="ISO document placeholder; actual certificate not provided" width="480" height="360" loading="lazy" />
+            <figcaption><h3>ISO</h3><p>Quality Standards</p></figcaption>
+          </figure>
+          <figure class="quality-card">
+            <img src="images/cert3.png" alt="FSSAI document placeholder; actual document not provided" width="480" height="360" loading="lazy" />
+            <figcaption><h3>FSSAI</h3><p>Compliance Documentation</p></figcaption>
+          </figure>
+          <figure class="quality-card">
+            <img src="images/cert4.png" alt="Lab report placeholder; actual test report not provided" width="480" height="360" loading="lazy" />
+            <figcaption><h3>Lab Tested</h3><p>Quality Testing</p></figcaption>
+          </figure>
+        </div>
+      </section>
+      <section class="offer" aria-labelledby="offer-title">
+        <div class="offer-box">
+          <div class="offer-label"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 13 11 22 2 13V3h10l8 8a1.4 1.4 0 0 1 0 2Z"/><circle cx="7" cy="8" r="1.5"/></svg><span>आज का Special Wellness Offer</span></div>
+          <div class="offer-sticker-stage">
+            <span class="offer-spark offer-spark-one" aria-hidden="true">✦</span>
+            <span class="offer-spark offer-spark-two" aria-hidden="true">✦</span>
+            <span class="offer-spark offer-spark-three" aria-hidden="true"></span>
+            <div class="offer-sticker">
+              <span class="offer-sticker-caption">WELLNESS OFFER</span>
+              <h2 class="big-off" id="offer-title">10% <span>OFF</span></h2>
+              <span class="offer-sticker-note">आपके लिए खास</span>
+            </div>
+          </div>
+          <p class="offer-intro">एक बेहतर wellness routine की शुरुआत आज से करें।</p>
+          <div class="offer-grid">
+            <div class="offer-item">
+              <span class="offer-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="4" width="14" height="17" rx="2"/><path d="M9 4V2h6v2M9 9h6M9 13h6M9 17h4"/></svg></span>
+              <b>FREE Diet Chart</b>
+            </div>
+            <div class="offer-item">
+              <span class="offer-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M5 9h1m12 6h1M10 8h5m-5 3h5m-5-3c5 0 5 6 0 6l5 3"/></svg></span>
+              <b>Cash on Delivery</b>
+            </div>
+            <div class="offer-item">
+              <span class="offer-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 5h12v12H2zM14 9h4l4 4v4h-8M18 9v4h4"/><circle cx="6" cy="18" r="2"/><circle cx="18" cy="18" r="2"/></svg></span>
+              <b>Pan-India Delivery</b>
+            </div>
+            <div class="offer-item">
+              <span class="offer-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 14v-3a8 8 0 0 1 16 0v3M20 17v2a2 2 0 0 1-2 2h-5"/><rect x="2" y="11" width="4" height="7" rx="2"/><rect x="18" y="11" width="4" height="7" rx="2"/><path d="M10 21h3"/></svg></span>
+              <b>Customer Support</b>
+            </div>
+          </div>
+          <a class="cta offer-cta" href="#order-form"><span>10% OFF के साथ Order करें</span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12h16m-6-6 6 6-6 6"/></svg></a>
+        </div>
+      </section>
+    
+      <section class="soft" id="order-form">
+        <div class="head">
+          <div class="kicker">Quick order</div>
+          <h2 class="order-heading"><svg class="order-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 3h2l3 12h11l3-9H6M9 20h.01M18 20h.01"/><circle cx="9" cy="20" r="1"/><circle cx="18" cy="20" r="1"/></svg><span>अपना Order अभी दर्ज करें</span></h2>
+          <p>सिर्फ 2 जानकारी भरें</p>
+        </div>
+        <div class="form-card">
+          <form id="orderForm" onsubmit="return submitForm(event);">
+            <input type="hidden" name="key" value="XQP4bdtEZkt3" /><input
+              type="hidden"
+              name="date"
+              id="date"
+            /><input type="hidden" name="event_id" id="event_id" /><input
+              type="hidden"
+              name="utm_source"
+            /><input type="hidden" name="utm_medium" /><input
+              type="hidden"
+              name="utm_campaign"
+            /><input type="hidden" name="utm_campaign_id" /><input
+              type="hidden"
+              name="utm_adset"
+            /><input type="hidden" name="utm_adset_id" /><input
+              type="hidden"
+              name="utm_ad"
+            /><input type="hidden" name="utm_ad_id" /><input
+              type="hidden"
+              name="utm_placement"
+            /><input type="hidden" name="fbclid" /><input
+              type="hidden"
+              name="fbc"
+            /><input type="hidden" name="fbp" />
+            <div class="field">
+              <label for="name">पूरा नाम *</label
+              ><input
+                id="name"
+                name="name"
+                autocomplete="name" pattern="[A-Za-z]+( [A-Za-z]+)*" aria-describedby="nameError" title="Use English letters and spaces only"
+                required
+                placeholder="अपना नाम English में लिखें"
+              />
+              <div class="err" id="nameError">कृपया नाम में केवल English letters और spaces लिखें।</div>
+            </div>
+            <div class="field">
+              <label for="phone">Mobile Number *</label
+              ><input
+                id="phone"
+                name="phone"
+                type="tel"
+                inputmode="numeric" autocomplete="tel-national" pattern="[6-9][0-9]{9}" aria-describedby="phoneError" title="Enter 10 digits starting with 6, 7, 8 or 9"
+                maxlength="10"
+                required
+                placeholder="10 Digit Mobile Number"
+              />
+              <div class="err" id="phoneError">
+                कृपया 6, 7, 8 या 9 से शुरू होने वाला 10 अंकों का नंबर दर्ज करें।
+              </div>
+            </div>
+            <div class="benefit order-icon-line"><svg class="order-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 8h18v4H3zM5 12v9h14v-9M12 8v13M12 8H8a3 3 0 1 1 3-3l1 3Zm0 0h4a3 3 0 1 0-3-3l-1 3Z"/></svg><span>10% OFF + FREE Diet Chart + COD</span></div>
+            <button class="cta" id="submitBtn">
+              मेरा Order Confirm करें →
+            </button>
+            <div class="secure order-icon-line"><svg class="order-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="10" width="14" height="11" rx="2"/><path d="M8 10V6a4 4 0 0 1 8 0v4M12 14v3"/></svg><span>आपकी जानकारी सुरक्षित रखी जाती है।</span></div>
+          </form>
+        </div>
+      </section>
+      <section aria-labelledby="faq-title">
+        <div class="head">
+          <div class="kicker">FAQ</div>
+          <h2 id="faq-title">आपके सवाल, हमारे जवाब</h2>
+        </div>
+        <div class="faq-list">
+          <div class="faq">
+            <button type="button" aria-expanded="false" aria-controls="faq-answer-1">Fibro Care क्या है?<span aria-hidden="true">+</span></button>
+            <div class="answer" id="faq-answer-1">Fibro Care एक herbal dietary supplement formulation है, जिसे traditional Ayurvedic botanical ingredients के साथ women's uterine and menstrual wellness को support करने के उद्देश्य से तैयार किया गया है।</div>
+          </div>
+          <div class="faq">
+            <button type="button" aria-expanded="false" aria-controls="faq-answer-2">इसमें कौन-कौन से ingredients हैं?<span aria-hidden="true">+</span></button>
+            <div class="answer" id="faq-answer-2">इस formulation में <strong>कांचनार गुग्गुल, अशोक छाल, शतावरी, लौंग और दशमूल</strong> जैसे botanical ingredients शामिल हैं।</div>
+          </div>
+          <div class="faq">
+            <button type="button" aria-expanded="false" aria-controls="faq-answer-3">क्या Fibro Care fibroid का इलाज करता है?<span aria-hidden="true">+</span></button>
+            <div class="answer" id="faq-answer-3">Fibro Care को disease-treatment या cure के विकल्प के रूप में प्रस्तुत नहीं किया जाना चाहिए। Uterine fibroid का management महिला की individual medical condition पर निर्भर करता है। Diagnosis और treatment के लिए qualified gynecologist से consultation जरूरी है।</div>
+          </div>
+          <div class="faq">
+            <button type="button" aria-expanded="false" aria-controls="faq-answer-4">क्या हर महिला को एक जैसा result मिलेगा?<span aria-hidden="true">+</span></button>
+            <div class="answer" id="faq-answer-4">नहीं। किसी भी wellness product के results व्यक्ति-विशेष के अनुसार अलग हो सकते हैं।</div>
+          </div>
+          <div class="faq">
+            <button type="button" aria-expanded="false" aria-controls="faq-answer-5">क्या pregnancy में इसे लिया जा सकता है?<span aria-hidden="true">+</span></button>
+            <div class="answer" id="faq-answer-5">Pregnancy, breastfeeding या pregnancy planning के दौरान किसी भी supplement को लेने से पहले qualified doctor/gynecologist से सलाह लें।</div>
+          </div>
+          <div class="faq">
+            <button type="button" aria-expanded="false" aria-controls="faq-answer-6">क्या COD available है?<span aria-hidden="true">+</span></button>
+            <div class="answer" id="faq-answer-6"><strong>हाँ। Cash on Delivery available है</strong>, subject to delivery availability.</div>
+          </div>
+          <div class="faq">
+            <button type="button" aria-expanded="false" aria-controls="faq-answer-7">क्या कोई diet chart मिलेगा?<span aria-hidden="true">+</span></button>
+            <div class="answer" id="faq-answer-7">हाँ, आपके offer में <strong>FREE Diet Chart</strong> शामिल है।</div>
+          </div>
+          <div class="faq">
+            <button type="button" aria-expanded="false" aria-controls="faq-answer-8">क्या 10% OFF available है?<span aria-hidden="true">+</span></button>
+            <div class="answer" id="faq-answer-8">हाँ, current offer में <strong>10% discount</strong> दिया जा रहा है।</div>
+          </div>
+        </div>
+      </section>
+      <div class="disclaimer">
+        <strong>Disclaimer:</strong> Fibro Care एक herbal dietary/wellness
+        supplement है। यह किसी disease का diagnosis, treatment, cure या
+        prevention करने का दावा नहीं करता और medical treatment का substitute
+        नहीं है। Uterine fibroid व अन्य gynecological conditions के लिए
+        qualified healthcare professional से consultation करें। Results अलग हो
+        सकते हैं। Pregnancy, breastfeeding, ongoing medication या diagnosed
+        condition में उपयोग से पहले medical advice लें।
+      </div>
+      <div class="policy">
+        <button data-modal="privacy">Privacy</button
+        ><button data-modal="terms">Terms</button
+        ><button data-modal="shipping">Shipping</button
+        ><button data-modal="contact">Contact</button
+        ><button data-modal="cancel">Cancellation</button><button data-modal="disclaimer">Legal Disclaimer</button>
+      </div>
+      <div class="sticky" id="sticky">
+        <a href="#order-form"><svg class="sticky-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 7h14l1 14H4L5 7Z"/><path d="M8 8V6a4 4 0 0 1 8 0v2"/></svg><span>अभी Order करें</span></a>
+      </div>
+      <div class="loading" id="loading">
+        <div class="loading-box">
+          <div class="spinner"></div>
+          <p>आपकी request भेजी जा रही है…</p>
+        </div>
+      </div>
+      <div class="modal" id="modal">
+        <div class="modal-box">
+          <button class="modal-close">×</button>
+          <div id="modalContent"></div>
+        </div>
+      </div>
+    </main>
+    <script>
+      const $ = (s) => document.querySelector(s),
+        $$ = (s) => [...document.querySelectorAll(s)];
+      $$(".faq button").forEach(
+        (b) =>
+          (b.onclick = () => {
+            const f = b.parentElement;
+            f.classList.toggle("open");
+            b.setAttribute("aria-expanded", String(f.classList.contains("open")));
+            b.querySelector("span").textContent = f.classList.contains("open")
+              ? "−"
+              : "+";
+          }),
+      );
+      function stickyState() {
+        const h = $("#hero").getBoundingClientRect(),
+          f = $("#order-form").getBoundingClientRect();
+        $("#sticky").classList.toggle(
+          "show",
+          h.bottom < innerHeight && !(f.top < innerHeight && f.bottom > 0),
+        );
+      }
+      addEventListener("scroll", stickyState, { passive: true });
+      stickyState();
+      const UTM = [
+        "utm_source",
+        "utm_medium",
+        "utm_campaign",
+        "utm_campaign_id",
+        "utm_adset",
+        "utm_adset_id",
+        "utm_ad",
+        "utm_ad_id",
+        "utm_placement",
+      ];
+      function setHidden(n, v) {
+        const i = document.querySelector(`#orderForm input[name="${n}"]`);
+        if (i) i.value = v || "";
+      }
+      function capture() {
+        const p = new URLSearchParams(location.search);
+        UTM.forEach((k) => {
+          const v = p.get(k) || sessionStorage.getItem(k) || "";
+          setHidden(k, v);
+          if (p.get(k))
+            try {
+              sessionStorage.setItem(k, p.get(k));
+            } catch (_) {}
+        });
+        setHidden("fbclid", p.get("fbclid"));
+      }
+      capture();
+      $("#name").oninput = (e) =>
+        (e.target.value = e.target.value
+          .replace(/[^A-Za-z ]/g, "")
+          .replace(/\s{2,}/g, " "));
+      let lastAcceptedPhone = "";
+      $("#phone").oninput = (e) => {
+        const input = e.target;
+        const digits = input.value.replace(/\D/g, "").slice(0, 10);
+        const invalidStart = digits.length > 0 && !/^[6-9]/.test(digits);
+        input.value = invalidStart ? lastAcceptedPhone : digits;
+        lastAcceptedPhone = input.value;
+        input.setCustomValidity("");
+        input.setAttribute("aria-invalid", "false");
+        $("#phoneError").classList.toggle("show", invalidStart);
+      };
+      function submitForm(e) {
+        e.preventDefault();
+        const n = $("#name").value.trim(),
+          p = $("#phone").value.trim(),
+          no = /^[A-Za-z]+(?: [A-Za-z]+)*$/.test(n),
+          po = /^[6-9]\d{9}$/.test(p);
+        $("#nameError").classList.toggle("show", !no);
+        $("#phoneError").classList.toggle("show", !po);
+        if (!no || !po) return false;
+        capture();
+        $("#date").value = new Date().toLocaleString("en-IN", {
+          timeZone: "Asia/Kolkata",
+        });
+        $("#event_id").value = crypto.randomUUID
+          ? crypto.randomUUID()
+          : "evt-" + Date.now();
+        $("#loading").classList.add("show");
+        if (typeof fbq === "function")
+          fbq(
+            "track",
+            "Lead",
+            { content_name: "FibroCare" },
+            { eventID: $("#event_id").value },
+          );
+        const endpoint = "https://script.google.com/macros/s//exec";
+        if (endpoint.endsWith("/macros/s//exec")) {
+          setTimeout(() => {
+            $("#loading").classList.remove("show");
+            alert(
+              "Form endpoint अभी configure नहीं है। अपना Google Apps Script URL जोड़ें।",
+            );
+          }, 350);
+          return false;
+        }
+        fetch(endpoint, { method: "POST", body: new FormData(e.target) })
+          .then((r) => {
+            if (!r.ok) throw Error();
+            location.href = "./Thankyou.html";
+          })
+          .catch(() => {
+            $("#loading").classList.remove("show");
+            alert("नेटवर्क समस्या के कारण request नहीं भेजी जा सकी।");
+          });
+        return false;
+      }
+      const policyIcon = (path) => `<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">${path}</svg>`;
+      const ICO = {
+        shield: policyIcon('<path d="M12 3 3 7v5c0 5 9 9 9 9s9-4 9-9V7l-9-4Z"/>'),
+        doc: policyIcon('<path d="M5 3h10l4 4v14H5zM15 3v5h4M9 12h6m-6 4h6"/>'),
+        truck: policyIcon('<path d="M2 5h12v12H2zM14 9h4l4 4v4h-8"/><circle cx="6" cy="18" r="2"/><circle cx="18" cy="18" r="2"/>'),
+        refresh: policyIcon('<path d="M20 7v5h-5M4 17v-5h5M5 7a8 8 0 0 1 14 0M19 17a8 8 0 0 1-14 0"/>'),
+        headset: policyIcon('<path d="M4 14v-3a8 8 0 0 1 16 0v6l-4 4h-4M4 11H2v7h4v-7M20 11h2v7h-4v-7"/>'),
+        phone: policyIcon('<path d="m5 3 4 4-2 3a14 14 0 0 0 7 7l3-2 4 4-3 3C9 22 2 15 2 6Z"/>'),
+        mail: policyIcon('<rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 6 10 7L22 6"/>'),
+        clock: policyIcon('<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>'),
+        chat: policyIcon('<path d="M21 11a9 9 0 0 1-9 9H3l2-5a9 9 0 1 1 16-4Z"/>'),
+        alert: policyIcon('<path d="m12 3 10 18H2L12 3ZM12 9v5m0 3h.01"/>')
+      };
+      const contents = {
+        privacy: `<div class="pp-mtitle">${ICO.shield}<h2 id="policy-title">Privacy Policy</h2></div><div class="pp-mbadge">Last updated: June 2025</div><p class="pp-mpara">FibroCare आपकी personal information की सुरक्षा को सर्वोच्च प्राथमिकता देता है। जब आप order करते हैं तो हम निम्नलिखित जानकारी एकत्र करते हैं:</p><ul class="pp-mlist"><li>नाम, मोबाइल नंबर और delivery address</li><li>Payment details (encrypted और secure)</li><li>Order history और purchase records</li></ul><div class="pp-mhl">आपकी जानकारी किसी third-party को नहीं बेची जाती। इसका उपयोग केवल order processing और delivery के लिए किया जाता है।</div><p class="pp-mpara">हम industry-standard SSL encryption का उपयोग करते हैं। किसी भी privacy concern के लिए हमसे contact करें।</p>`,
+        terms: `<div class="pp-mtitle">${ICO.doc}<h2 id="policy-title">Terms &amp; Conditions</h2></div><div class="pp-mbadge">Please read carefully</div><p class="pp-mpara">FibroCare का उपयोग करके आप इन terms से सहमत होते हैं:</p><ul class="pp-mlist"><li>Product results व्यक्ति-दर-व्यक्ति अलग हो सकते हैं</li><li>यह product किसी बीमारी का इलाज नहीं है — एक Ayurvedic wellness supplement है</li><li>18 वर्ष से कम आयु के व्यक्ति बिना guardian consent के order न करें</li><li>Fake/fraudulent orders के लिए legal action लिया जा सकता है</li><li>Product images केवल representation के लिए हैं</li></ul><div class="pp-mhl">FibroCare किसी भी समय बिना prior notice के prices, offers या terms बदलने का अधिकार रखता है।</div>`,
+        shipping: `<div class="pp-mtitle">${ICO.truck}<h2 id="policy-title">Shipping Policy</h2></div><div class="pp-mbadge">Free Delivery All India</div><p class="pp-mpara">हम पूरे India में FREE shipping प्रदान करते हैं। Delivery timeline:</p><ul class="pp-mlist"><li>Metro cities (Delhi, Mumbai, Bengaluru): 3–5 business days</li><li>Tier-2 / Tier-3 cities: 5–7 business days</li><li>Remote / rural areas: 7–10 business days</li></ul><div class="pp-mhl">Order confirm होने के 24–48 घंटे के अंदर tracking number SMS/WhatsApp पर भेजा जाएगा।</div><ul class="pp-mlist"><li>Delivery attempt 3 बार की जाएगी — उसके बाद order वापस आ जाएगा</li><li>Incorrect address की जिम्मेदारी customer की होगी</li></ul>`,
+        cancel: `<div class="pp-mtitle">${ICO.refresh}<h2 id="policy-title">Cancellation Policy</h2></div><div class="pp-mbadge">7-Day Easy Return</div><p class="pp-mpara">आप order confirm होने के <strong>24 घंटे के अंदर</strong> cancellation request कर सकते हैं।</p><ul class="pp-mlist"><li>Order dispatch होने के बाद cancellation संभव नहीं</li><li>Damaged या wrong product मिलने पर 7 दिन के अंदर complaint करें</li><li>Opened/used products return नहीं किए जाएंगे</li><li>Refund 5–7 business days में original payment method पर</li></ul><div class="pp-mhl">Return के लिए product original packaging में होना ज़रूरी है। Unboxing video होने पर claim जल्दी process होता है।</div>`,
+        contact: `<div class="pp-mtitle">${ICO.headset}<h2 id="policy-title">Contact Us</h2></div><p class="pp-mpara">FibroCare की team आपकी मदद के लिए available है — सोमवार से शनिवार, सुबह 9 बजे से शाम 6 बजे तक।</p><div class="pp-cgrid"><div class="pp-citem">${ICO.phone}<div class="pp-clbl">Call / WhatsApp</div><div class="pp-cval"><a href="tel:+918860606078">+91 88606 06078</a></div></div><div class="pp-citem">${ICO.mail}<div class="pp-clbl">Email</div><div class="pp-cval"><a href="mailto:support@ssherbalindia.com">support@ssherbalindia.com</a></div></div><div class="pp-citem">${ICO.clock}<div class="pp-clbl">Support Hours</div><div class="pp-cval">Mon–Sat 9am–6pm</div></div><div class="pp-citem">${ICO.chat}<div class="pp-clbl">Response Time</div><div class="pp-cval">Within 24 hours</div></div></div>`,
+        disclaimer: `<div class="pp-mtitle">${ICO.alert}<h2 id="policy-title">Legal Disclaimer</h2></div><div class="pp-mbadge">Important Notice</div><p class="pp-mpara">FibroCare Capsules एक Ayurvedic dietary wellness supplement है। इस product के बारे में निम्नलिखित बातें ध्यान में रखें:</p><ul class="pp-mlist"><li>यह product किसी भी बीमारी का diagnosis, treatment, cure या prevention नहीं करता</li><li>Results individual to individual अलग हो सकते हैं</li><li>यह product FSSAI guidelines के अनुसार एक food supplement है, drug नहीं</li><li>किसी भी medical condition में उपयोग से पहले doctor से परामर्श करें</li><li>Pregnant, nursing women या किसी chronic illness वाले व्यक्ति पहले physician से consult करें</li></ul><div class="pp-mhl">Website पर दिए गए statements को किसी regulatory authority द्वारा evaluate नहीं किया गया है। यह product किसी disease को diagnose, treat, cure या prevent करने के लिए नहीं है।</div><p class="pp-mpara">Product की images, descriptions और testimonials केवल illustrative purpose के लिए हैं। FibroCare किसी भी indirect या consequential loss के लिए उत्तरदायी नहीं है।</p>`
+      };
+      $$("[data-modal]").forEach((b) => {
+        b.onclick = () => {
+          $("#modalContent").innerHTML = contents[b.dataset.modal];
+          $("#modal").classList.add("show");
+        };
+      });
+      $(".modal-close").onclick = () => $("#modal").classList.remove("show");
+      $("#modal").onclick = (e) => {
+        if (e.target.id === "modal") e.currentTarget.classList.remove("show");
+      };
+    </script>
+  </body>
+</html>
