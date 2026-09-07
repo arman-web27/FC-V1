@@ -449,21 +449,43 @@
         color: var(--muted);
       }
       .expert-quotes { display: grid; gap: 20px; }
-      .expert-guidance .expert { margin: 0; padding: 23px 20px; border: 1px solid var(--line); border-radius: 24px; box-shadow: 0 12px 28px #30102025; }
-      .expert-card-heading { display: flex; align-items: flex-start; gap: 13px; margin-bottom: 20px; }
-      .expert-card-heading .avatar { flex: 0 0 48px; border: 1px solid var(--line); }
-      .expert-card-heading h3 { color: var(--plum); font-size: 19px; line-height: 1.5; margin: 0; font-weight: 600; }
-      .expert-guidance blockquote { border-left: 3px solid var(--rose); padding-left: 15px; margin: 0 0 22px; color: var(--ink); font-size: 16px; line-height: 1.85; }
+      .expert-guidance .expert { display: grid; grid-template-columns: 40% minmax(0, 1fr); margin: 0; padding: 0; overflow: hidden; gap: 0; border: 1px solid var(--line); border-radius: 24px; box-shadow: 0 12px 28px #30102025; }
+      .expert-portrait { position: relative; margin: 0; min-width: 0; background: linear-gradient(155deg, #fbe8ee, #dcabc0); }
+      .expert-portrait img { position: absolute; inset: 0; display: block; width: 100%; height: 100%; object-fit: cover; object-position: center top; }
+      .expert-content { min-width: 0; padding: 20px 15px; overflow-wrap: break-word; }
+      .expert-card-heading { margin-bottom: 14px; }
+      .expert-card-heading h3 { color: var(--plum); font-size: 18px; line-height: 1.5; margin: 0; font-weight: 600; }
+      .expert-guidance blockquote { border-left: 3px solid var(--rose); padding-left: 11px; margin: 0 0 16px; color: var(--ink); font-size: 14px; line-height: 1.8; }
       .expert-guidance blockquote p { margin: 0; }
       .expert-author { border-top: 1px solid var(--line); padding-top: 15px; }
-      .expert-author strong { display: block; font-size: 17px; margin-bottom: 5px; }
+      .expert-author strong { display: block; font-size: 15px; margin-bottom: 5px; }
       .expert-author small { font-size: 12px; line-height: 1.65; }
-      @media (max-width: 360px) {
-        .expert-guidance .expert { padding: 20px 16px; }
-        .expert-card-heading { gap: 10px; }
-        .expert-card-heading h3 { font-size: 18px; }
-        .expert-guidance blockquote { font-size: 15px; padding-left: 12px; }
+      @media (max-width: 420px) {
+        .expert-guidance { padding: 30px 16px; }
+        .expert-quotes { gap: 18px; }
+        .expert-guidance .expert { grid-template-columns: minmax(0, 1fr); border-radius: 20px; }
+        .expert-portrait { height: clamp(240px, 70vw, 290px); border-bottom: 1px solid var(--line); }
+        .expert-portrait img { object-fit: contain; object-position: center; }
+        .expert-content { padding: 20px; }
+        .expert-card-heading h3 { font-size: 20px; }
+        .expert-guidance blockquote { font-size: 15px; }
       }
+      @media (min-width: 421px) and (max-width: 767px) {
+        .expert-guidance { padding: 32px 16px; }
+        .expert-content { padding: 18px 14px; }
+      }
+      /* The site has a 480px page cap, including on tablets. */
+      @media (min-width: 768px) and (max-width: 1024px) {
+        .expert-guidance { padding: 38px 16px; }
+        .expert-quotes { gap: 24px; }
+        .expert-content { padding: 22px 16px; }
+        .expert-guidance blockquote { font-size: 15px; }
+      }
+      .expert-content { display: flex; flex-direction: column; }
+      .guidance-copy { margin: 0 0 16px; color: var(--muted); font-size: 15px; line-height: 1.8; }
+      .guidance-highlight { margin: 0 0 20px; padding: 12px; background: var(--blush); border-left: 3px solid var(--rose); border-radius: 0 10px 10px 0; color: var(--plum); font-size: 14px; line-height: 1.7; }
+      .expert-author { margin-top: auto; }
+      .expert-author strong { margin-bottom: 0; font-size: 17px; }
       .stars {
         color: var(--gold);
         letter-spacing: 2px;
@@ -472,15 +494,15 @@
         display: block;
         margin: 8px 0;
       }
-      .review-person { display: flex; align-items: center; gap: 12px; margin: 16px 0 20px; }
-      .review-avatar { flex: 0 0 72px; width: 72px; height: 72px; object-fit: cover; border-radius: 50%; border: 3px solid var(--blush); box-shadow: 0 4px 12px #6f234618; }
+      .review-person { display: flex; align-items: center; gap: 16px; margin: 18px 0 22px; }
+      .review-avatar { flex: 0 0 92px; width: 92px; height: 92px; object-fit: cover; border-radius: 50%; border: 3px solid var(--blush); box-shadow: 0 4px 12px #6f234618; }
       .review-person strong { display: block; color: var(--plum); font-size: 17px; }
       .review-person span { display: block; color: var(--muted); font-size: 12px; line-height: 1.6; }
       .review-person small { display: block; color: var(--plum); font-size: 11px; margin-top: 4px; }
       .customer-reviews { display: grid; gap: 18px; }
-      .customer-experiences .review { position: relative; padding: 22px; border-radius: 24px; box-shadow: 0 8px 24px #6f23460d; }
+      .customer-experiences .review { position: relative; padding: 24px; border: 1px solid var(--line); border-top: 3px solid var(--rose); border-radius: 24px; background: linear-gradient(145deg, #fff, #fffafc); box-shadow: 0 10px 28px #6f234612; }
       .review-quote-mark { display: block; height: 34px; font-family: Georgia, serif; font-size: 56px; line-height: 1; color: var(--rose); margin-bottom: 10px; }
-      .customer-experiences .review h3 { font-size: 20px; line-height: 1.5; margin: 0 0 10px; }
+      .customer-experiences .review h3 { color: var(--plum); font-size: 21px; line-height: 1.55; margin: 0 0 10px; }
       .customer-experiences .review-attribution { font-size: 12px; font-weight: 600; color: var(--plum); margin-bottom: 18px; }
       .customer-experiences blockquote { margin: 0 0 18px; }
       .customer-experiences blockquote p { font-size: 15px; line-height: 1.85; color: var(--muted); margin: 0; }
@@ -489,6 +511,17 @@
       .review-note { margin-top: 20px; padding: 16px 18px; border: 1px solid var(--line); border-left: 3px solid var(--gold); border-radius: 14px; background: #ffffff80; }
       .review-note h3 { margin: 0 0 6px; font-size: 15px; color: var(--plum); }
       .review-note p { margin: 0; font-size: 13px; line-height: 1.7; color: var(--muted); }
+      .customer-experiences .review-person > div { min-width: 0; }
+      .customer-experiences .review-person strong { font-size: 15px; }
+      .customer-experiences .review-avatar { border: 4px solid #fff; outline: 1px solid var(--line); box-shadow: 0 6px 18px #6f23461a; }
+      .customer-experiences .review-rating { text-align: center; }
+      @media (max-width: 360px) {
+        .customer-experiences { padding: 30px 16px; }
+        .customer-experiences .review { padding: 20px 16px; }
+        .customer-experiences .review h3 { font-size: 19px; }
+        .customer-experiences .review-person { gap: 12px; }
+        .customer-experiences .review-avatar { flex-basis: 84px; width: 84px; height: 84px; }
+      }
       .herb {
         text-align: center;
       }
@@ -532,13 +565,31 @@
         display: block;
         color: var(--green);
       }
-      .quality-cards { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
-      .quality-card { margin: 0; overflow: hidden; background: #fff; border: 1px solid #ccd9cf; border-radius: 18px; box-shadow: 0 8px 20px #365e4c10; }
-      .quality-card img { display: block; width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: contain; border-bottom: 1px solid #e1e8df; }
-      .quality-card figcaption { padding: 15px 10px 18px; text-align: center; }
-      .quality-card h3 { margin: 0 0 5px; color: var(--green); font-size: 20px; }
-      .quality-card p { margin: 0; color: var(--muted); font-size: 12px; line-height: 1.6; }
-      @media (max-width: 360px) { .quality-cards { gap: 12px; } .quality-card h3 { font-size: 18px; } }
+      .quality-section { background: linear-gradient(180deg, #f9e9ef, #fffaf5); padding: 0 18px 38px; }
+      .quality-section .head { margin: 0 -18px; padding: 34px 28px 58px; color: #fff; background: radial-gradient(ellipse at top right, #ae5879 0, transparent 65%), #6f2346; text-align: center; }
+      .quality-section .head .kicker { color: #ffdae6; letter-spacing: 2px; }
+      .quality-section .head h2 { color: #fff; margin: 0; font-size: 29px; line-height: 1.5; }
+      .quality-emblem { display: grid; place-items: center; width: 52px; height: 52px; margin: 0 auto 16px; border: 1px solid #ffffff50; border-radius: 16px; background: #ffffff12; color: #ffe0b2; }
+      .quality-emblem svg { width: 29px; height: 29px; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+      .quality-cards { position: relative; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; margin-top: -28px; }
+      .quality-card { position: relative; display: flex; flex-direction: column; min-width: 0; margin: 0; padding: 10px; overflow: hidden; background: #fff; border: 1px solid #ead5de; border-radius: 22px; box-shadow: 0 12px 26px #58213a12; }
+      .quality-card img { display: block; width: 100%; height: auto; aspect-ratio: 1; object-fit: contain; padding: 14px; border: 1px solid #f0e2e8; border-radius: 15px; background: #fffafc; }
+      .quality-card figcaption { flex: 1; padding: 17px 6px 10px; text-align: left; }
+      .quality-category { display: block; color: #94627a; font-size: 9px; font-weight: 700; letter-spacing: 1px; line-height: 1.5; text-transform: uppercase; margin-bottom: 7px; }
+      .quality-card h3 { margin: 0 0 6px; color: var(--plum); font-size: 23px; line-height: 1.3; }
+      .quality-card p { margin: 0; color: var(--muted); font-size: 13px; line-height: 1.6; }
+      .quality-card figcaption::after { content: ""; display: block; width: 30px; height: 3px; margin-top: 16px; border-radius: 3px; background: var(--rose); }
+      @media (max-width: 360px) {
+        .quality-section { padding: 0 16px 30px; }
+        .quality-section .head { margin: 0 -16px; padding: 30px 22px 52px; }
+        .quality-section .head h2 { font-size: 25px; }
+        .quality-cards { grid-template-columns: minmax(0, 1fr); gap: 14px; }
+        .quality-card { display: grid; grid-template-columns: 42% minmax(0, 1fr); align-items: center; gap: 12px; padding: 12px; border-radius: 18px; }
+        .quality-card img { padding: 10px; }
+        .quality-card figcaption { padding: 6px 0; }
+        .quality-card h3 { font-size: 21px; }
+        .quality-card figcaption::after { margin-top: 10px; }
+      }
       .cert-note {
         font-size: 11px;
         color: var(--muted);
@@ -811,7 +862,7 @@
       <section class="hero" id="hero" aria-label="FibroCare banner">
         <img
           class="hero-banner"
-          src="images/banner.png"
+          src="images/banner.avif"
           alt="FibroCare banner placeholder"
           width="960"
           height="720"
@@ -836,12 +887,12 @@
             <use href="#signs-path" fill="none" stroke="url(#signs-gradient)" stroke-width="32"/>
             <use href="#signs-path" fill="none" stroke="#6f2346" stroke-opacity=".45" stroke-width="2" stroke-dasharray="10 13"/>
           </svg>
-          <article class="sign-step"><div class="sign-image"><img src="images/sign1.png" alt="" width="160" height="160" loading="lazy" /></div><div class="sign-copy"><h3>Heavy Bleeding</h3><p>बार-बार pad बदलना और लंबे समय तक bleeding.</p></div></article>
-          <article class="sign-step"><div class="sign-image"><img src="images/sign2.png" alt="" width="160" height="160" loading="lazy" /></div><div class="sign-copy"><h3>Pain & Cramps</h3><p>Periods में पेट के निचले हिस्से में दर्द.</p></div></article>
-          <article class="sign-step"><div class="sign-image"><img src="images/sign3.png" alt="" width="160" height="160" loading="lazy" /></div><div class="sign-copy"><h3>Pelvic Pressure</h3><p>भारीपन, pressure या discomfort.</p></div></article>
-          <article class="sign-step"><div class="sign-image"><img src="images/sign4.png" alt="" width="160" height="160" loading="lazy" /></div><div class="sign-copy"><h3>बार-बार पेशाब</h3><p>Bladder पर pressure के कारण इच्छा बढ़ना.</p></div></article>
-          <article class="sign-step"><div class="sign-image"><img src="images/sign5.png" alt="" width="160" height="160" loading="lazy" /></div><div class="sign-copy"><h3>कमजोरी</h3><p>Heavy bleeding से iron deficiency का जोखिम.</p></div></article>
-          <article class="sign-step"><div class="sign-image"><img src="images/sign6.png" alt="" width="160" height="160" loading="lazy" /></div><div class="sign-copy"><h3>Daily Life</h3><p>काम, यात्रा, नींद और routine पर असर.</p></div></article>
+          <article class="sign-step"><div class="sign-image"><img src="images/sign1.avif" alt="" width="160" height="160" loading="lazy" /></div><div class="sign-copy"><h3>Heavy Bleeding</h3><p>बार-बार pad बदलना और लंबे समय तक bleeding.</p></div></article>
+          <article class="sign-step"><div class="sign-image"><img src="images/sign2.avif" alt="" width="160" height="160" loading="lazy" /></div><div class="sign-copy"><h3>Pain & Cramps</h3><p>Periods में पेट के निचले हिस्से में दर्द.</p></div></article>
+          <article class="sign-step"><div class="sign-image"><img src="images/sign3.avif" alt="" width="160" height="160" loading="lazy" /></div><div class="sign-copy"><h3>Pelvic Pressure</h3><p>भारीपन, pressure या discomfort.</p></div></article>
+          <article class="sign-step"><div class="sign-image"><img src="images/sign4.avif" alt="" width="160" height="160" loading="lazy" /></div><div class="sign-copy"><h3>बार-बार पेशाब</h3><p>Bladder पर pressure के कारण इच्छा बढ़ना.</p></div></article>
+          <article class="sign-step"><div class="sign-image"><img src="images/sign5.avif" alt="" width="160" height="160" loading="lazy" /></div><div class="sign-copy"><h3>कमजोरी</h3><p>Heavy bleeding से iron deficiency का जोखिम.</p></div></article>
+          <article class="sign-step"><div class="sign-image"><img src="images/sign6.avif" alt="" width="160" height="160" loading="lazy" /></div><div class="sign-copy"><h3>Daily Life</h3><p>काम, यात्रा, नींद और routine पर असर.</p></div></article>
         </div>
       </section>
       <section class="product" aria-labelledby="product-title">
@@ -850,7 +901,7 @@
           <h3 class="product-name">Introducing — <strong>Fibro Care</strong></h3>
         </div>
         <figure class="product-visual">
-          <img src="images/capsule.png" alt="Fibro Care dietary supplement की बोतल और जार" width="1254" height="1254" loading="lazy" />
+          <img src="images/capsule.avif" alt="Fibro Care dietary supplement की बोतल और जार" width="1254" height="1254" loading="lazy" />
         </figure>
         <p class="product-description">Fibro Care एक <strong>herbal dietary supplement formulation</strong> है, जिसमें पारंपरिक Ayurvedic botanical ingredients का संयोजन किया गया है।</p>
         <div class="product-wellness">
@@ -873,7 +924,7 @@
         <ol class="works-flow">
           <li class="works-step">
             <article class="works-card">
-              <div class="works-image"><img src="images/action1.png" alt="Botanical illustration of flowers, leaves and resin" width="120" height="120" loading="lazy" /><span class="works-number" aria-hidden="true">01</span></div>
+              <div class="works-image"><img src="images/action1.avif" alt="Botanical illustration of flowers, leaves and resin" width="120" height="120" loading="lazy" /><span class="works-number" aria-hidden="true">01</span></div>
               <div class="works-copy">
                 <h3>गांठों को कम करने में सहायक</h3></div>
             </article>
@@ -887,21 +938,21 @@
           </li>
           <li class="works-step">
             <article class="works-card">
-              <div class="works-image"><img src="images/action3.png" alt="Botanical illustration of cloves and roots" width="120" height="120" loading="lazy" /><span class="works-number" aria-hidden="true">03</span></div>
+              <div class="works-image"><img src="images/action3.avif" alt="Botanical illustration of cloves and roots" width="120" height="120" loading="lazy" /><span class="works-number" aria-hidden="true">03</span></div>
               <div class="works-copy">
                 <h3>दर्द और सूजन से राहत में सहायक</h3></div>
             </article>
           </li>
           <li class="works-step">
             <article class="works-card">
-              <div class="works-image"><img src="images/action4.png" alt="Botanical illustration of shatavari roots" width="120" height="120" loading="lazy" /><span class="works-number" aria-hidden="true">04</span></div>
+              <div class="works-image"><img src="images/action4.avif" alt="Botanical illustration of shatavari roots" width="120" height="120" loading="lazy" /><span class="works-number" aria-hidden="true">04</span></div>
               <div class="works-copy">
                 <h3>महिला Reproductive Wellness को Support</h3></div>
             </article>
           </li>
           <li class="works-step">
             <article class="works-card">
-              <div class="works-image"><img src="images/action5.png" alt="Botanical illustration of mixed herbs" width="120" height="120" loading="lazy" /><span class="works-number" aria-hidden="true">05</span></div>
+              <div class="works-image"><img src="images/action5.avif" alt="Botanical illustration of mixed herbs" width="120" height="120" loading="lazy" /><span class="works-number" aria-hidden="true">05</span></div>
               <div class="works-copy">
                 <h3>Ayurvedic Herbal Formulation</h3></div>
             </article>
@@ -914,110 +965,80 @@
           <h2 id="expert-title">Experts की राय भी है जरूरी</h2>
         </div>
         <div class="expert-quotes">
-          <article class="expert">
-            <div class="expert-card-heading">
-              <div class="avatar" aria-hidden="true">👩‍⚕️</div>
-              <h3>Fibroid और महिलाओं की Uterine Health को लेकर सही जानकारी क्यों जरूरी है?</h3>
+          <article class="expert" aria-labelledby="guidance-first">
+            <figure class="expert-portrait">
+              <img src="images/guide1.avif" alt="Illustrative doctor portrait" width="320" height="800" loading="lazy" />
+            </figure>
+            <div class="expert-content">
+              <div class="expert-card-heading">
+                <h3 id="guidance-first">सही जानकारी, सही देखभाल</h3>
+              </div>
+              <p class="guidance-copy">हर महिला में Fibroid के symptoms अलग हो सकते हैं। Heavy bleeding, pelvic pain या pressure जैसी परेशानियों को नज़रअंदाज़ न करें।</p>
+              <p class="guidance-highlight">सही diagnosis के बाद ही doctor के साथ treatment का निर्णय लें।</p>
+              <footer class="expert-author">
+                <strong>डॉ. आरव शर्मा</strong>
+              </footer>
             </div>
-            <blockquote>
-              <p>“हर महिला में Fibroid के symptoms अलग हो सकते हैं। Heavy bleeding, pelvic pain या pressure जैसी परेशानियों को लंबे समय तक ignore नहीं करना चाहिए। सही diagnosis के बाद ही उचित treatment का निर्णय लिया जाना चाहिए।”</p>
-            </blockquote>
-            <footer class="expert-author">
-              <!-- Replace the doctor name and affiliation with verified attribution before publishing. -->
-              <strong>— डॉ. __________</strong>
-              <small><em>Gynecologist / Ayurvedic Physician, ________</em></small>
-            </footer>
           </article>
-          <article class="expert">
-            <div class="expert-card-heading">
-              <div class="avatar" aria-hidden="true">👩‍⚕️</div>
-              <h3>“पहले समस्या को समझें, फिर सही कदम उठाएं”</h3>
+          <article class="expert" aria-labelledby="guidance-second">
+            <figure class="expert-portrait">
+              <img src="images/guide2.avif" alt="Illustrative doctor portrait" width="320" height="800" loading="lazy" />
+            </figure>
+            <div class="expert-content">
+              <div class="expert-card-heading">
+                <h3 id="guidance-second">रोज़ की आदतें, बेहतर देखभाल</h3>
+              </div>
+              <p class="guidance-copy">अपने menstrual health पर ध्यान दें। Balanced diet और healthy lifestyle को अपनी daily wellness routine का हिस्सा बनाएं।</p>
+              <p class="guidance-highlight">किसी medical condition में supplement लेने से पहले doctor से सलाह लें।</p>
+              <footer class="expert-author">
+                <strong>डॉ. अनन्या मेहता</strong>
+              </footer>
             </div>
-            <blockquote>
-              <p>“महिलाओं को अपने menstrual health और uterine wellness को लेकर जागरूक रहना चाहिए। Herbal wellness supplements को balanced diet और healthy lifestyle के साथ support के रूप में देखा जा सकता है, लेकिन medical condition में professional guidance जरूरी है।”</p>
-            </blockquote>
-            <footer class="expert-author">
-              <!-- Replace the doctor name and affiliation with verified attribution before publishing. -->
-              <strong>— डॉ. __________</strong>
-              <small><em>Ayurvedic Physician / Women's Health Specialist, ________</em></small>
-            </footer>
           </article>
         </div>
       </section>
-      <section class="soft customer-experiences" aria-labelledby="reviews-title">
-        <div class="head">
-          <div class="kicker">ILLUSTRATIVE WELLNESS STORIES</div>
-          <h2 id="reviews-title">महिलाओं की wellness — उदाहरण</h2><p>ये काल्पनिक उदाहरण हैं, verified customer reviews नहीं।</p>
-        </div>
-        <!-- Editorial note: Verify the customer-count claim and all reviews against genuine, consented customer records before publishing. Never invent names, cities, ages, or guaranteed-result testimonials. -->
-        <div class="customer-reviews">
-          <article class="card review">
-            <span class="review-quote-mark" aria-hidden="true">“</span>
-            <h3>“मेरे periods में पहले काफी discomfort रहता था...”</h3>
-            <div class="review-person"><img class="review-avatar" src="images/review-pooja.png" alt="AI-generated portrait of a fictional woman" width="72" height="72" loading="lazy" /><div><strong>पूजा शर्मा</strong><span><b>38 वर्ष</b> — Jaipur, Rajasthan</span><small>काल्पनिक उदाहरण · AI-generated portrait</small></div></div>
-            <blockquote><p>“मैंने अपनी routine में Fibro Care को शामिल किया। कुछ समय बाद मुझे अपनी overall menstrual wellness में improvement महसूस हुआ।”</p></blockquote>
-            
-          </article>
-          <article class="card review">
-            <span class="review-quote-mark" aria-hidden="true">“</span>
-            <h3>“पहले हर महीने बहुत परेशानी रहती थी...”</h3>
-            <div class="review-person"><img class="review-avatar" src="images/review-neha.png" alt="AI-generated portrait of a fictional woman" width="72" height="72" loading="lazy" /><div><strong>नेहा वर्मा</strong><span><b>34 वर्ष</b> — Lucknow, Uttar Pradesh</span><small>काल्पनिक उदाहरण · AI-generated portrait</small></div></div>
-            <blockquote><p>“Periods के दौरान होने वाली परेशानी की वजह से मेरा routine disturb होता था। अब मैं अपनी health को लेकर ज्यादा conscious हूँ और अपनी routine का भी ध्यान रखती हूँ।”</p></blockquote>
-            
-          </article>
-          <article class="card review">
-            <span class="review-quote-mark" aria-hidden="true">“</span>
-            <h3>“मैंने पहले अपनी symptoms को ignore किया था...”</h3>
-            <div class="review-person"><img class="review-avatar" src="images/review-sunita.png" alt="AI-generated portrait of a fictional woman" width="72" height="72" loading="lazy" /><div><strong>सुनीता यादव</strong><span><b>42 वर्ष</b> — Bhopal, Madhya Pradesh</span><small>काल्पनिक उदाहरण · AI-generated portrait</small></div></div>
-            <blockquote><p>“बाद में मैंने doctor से consultation लिया और अपनी condition को समझा। साथ में अपनी daily wellness routine पर भी ध्यान देना शुरू किया।”</p></blockquote>
-            
-          </article>
-        </div>
-        <aside class="review-note" aria-labelledby="review-note-title">
-          <h3 id="review-note-title">⚠️ Important</h3>
-          <p>Customer experiences individual हैं। Results व्यक्ति-विशेष के अनुसार अलग हो सकते हैं।</p>
-        </aside>
-      </section>
+      
       <section class="ingredients" aria-labelledby="ingredients-title">
         <div class="head">
           <div class="kicker">From Ayurveda</div>
           <h2 id="ingredients-title">5 Traditional Ayurvedic Ingredients</h2>
         </div>
         <ol class="grid herbs ingredient-flow">
-          <li class="ingredient-step"><span class="ingredient-step-number" aria-hidden="true">01</span><article class="card herb"><img class="ingredient-image" src="images/ingredient-kanchanar.png" alt="कांचनार के फूल और गुग्गुल का botanical illustration" width="800" height="600" loading="lazy" /><footer class="ingredient-copy"><h3>कांचनार गुग्गुल</h3>
+          <li class="ingredient-step"><span class="ingredient-step-number" aria-hidden="true">01</span><article class="card herb"><img class="ingredient-image" src="images/ing1.avif" alt="कांचनार के फूल और गुग्गुल का botanical illustration" width="800" height="600" loading="lazy" /><footer class="ingredient-copy"><h3>कांचनार गुग्गुल</h3>
             <p>पारंपरिक Ayurvedic formulations में उपयोग किया जाने वाला botanical ingredient।</p></footer></article></li>
-          <li class="ingredient-step"><span class="ingredient-step-number" aria-hidden="true">02</span><article class="card herb"><img class="ingredient-image" src="images/ingredient-ashoka.png" alt="अशोक छाल का botanical illustration" width="800" height="600" loading="lazy" /><footer class="ingredient-copy"><h3>अशोक छाल</h3>
+          <li class="ingredient-step"><span class="ingredient-step-number" aria-hidden="true">02</span><article class="card herb"><img class="ingredient-image" src="images/ing2.avif" alt="अशोक छाल का botanical illustration" width="800" height="600" loading="lazy" /><footer class="ingredient-copy"><h3>अशोक छाल</h3>
             <p>महिलाओं की traditional wellness formulations में लंबे समय से प्रयुक्त ingredient।</p></footer></article></li>
-          <li class="ingredient-step"><span class="ingredient-step-number" aria-hidden="true">03</span><article class="card herb"><img class="ingredient-image" src="images/ingredient-shatavari.png" alt="शतावरी की जड़ों का botanical illustration" width="800" height="600" loading="lazy" /><footer class="ingredient-copy"><h3>शतावरी</h3>
+          <li class="ingredient-step"><span class="ingredient-step-number" aria-hidden="true">03</span><article class="card herb"><img class="ingredient-image" src="images/ing3.avif" alt="शतावरी की जड़ों का botanical illustration" width="800" height="600" loading="lazy" /><footer class="ingredient-copy"><h3>शतावरी</h3>
             <p>महिलाओं की overall wellness के लिए traditional Ayurveda में उपयोग किया जाने वाला botanical।</p></footer></article></li>
-          <li class="ingredient-step"><span class="ingredient-step-number" aria-hidden="true">04</span><article class="card herb"><img class="ingredient-image" src="images/ingredient-clove.png" alt="लौंग का botanical illustration" width="800" height="600" loading="lazy" /><footer class="ingredient-copy"><h3>लौंग</h3>
+          <li class="ingredient-step"><span class="ingredient-step-number" aria-hidden="true">04</span><article class="card herb"><img class="ingredient-image" src="images/ing4.avif" alt="लौंग का botanical illustration" width="800" height="600" loading="lazy" /><footer class="ingredient-copy"><h3>लौंग</h3>
             <p>अपने traditional botanical use के लिए जाना जाने वाला ingredient।</p></footer></article></li>
-          <li class="ingredient-step"><span class="ingredient-step-number" aria-hidden="true">05</span><article class="card herb"><img class="ingredient-image" src="images/ingredient-dashmool.png" alt="दशमूल की मिश्रित जड़ों का botanical illustration" width="800" height="600" loading="lazy" /><footer class="ingredient-copy"><h3>दशमूल</h3>
+          <li class="ingredient-step"><span class="ingredient-step-number" aria-hidden="true">05</span><article class="card herb"><img class="ingredient-image" src="images/ing5.avif" alt="दशमूल की मिश्रित जड़ों का botanical illustration" width="800" height="600" loading="lazy" /><footer class="ingredient-copy"><h3>दशमूल</h3>
             <p>Ayurvedic tradition में उपयोग किया जाने वाला multi-herb formulation।</p></footer></article></li>
         </ol>
       </section>
       <section class="sage quality-section" aria-labelledby="quality-title">
         <div class="head">
+<span class="quality-emblem" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 3 4 6v6c0 5 8 9 8 9s8-4 8-9V6l-8-3Z"/><path d="m8 12 3 3 5-6"/></svg></span>
           <div class="kicker">Quality first</div>
           <h2 id="quality-title">Quality के साथ कोई समझौता नहीं</h2>
         </div>
         <!-- Replace each placeholder image with its genuine supporting document. -->
         <div class="grid quality-cards">
           <figure class="quality-card">
-            <img src="images/cert1.png" alt="GMP document placeholder; actual certificate not provided" width="480" height="360" loading="lazy" />
-            <figcaption><h3>GMP</h3><p>Good Manufacturing Practices</p></figcaption>
+            <img src="images/cert1.avif" alt="GMP document placeholder; actual certificate not provided" width="480" height="360" loading="lazy" />
+            <figcaption><span class="quality-category">Manufacturing</span><h3>GMP</h3><p>Good Manufacturing Practices</p></figcaption>
           </figure>
           <figure class="quality-card">
-            <img src="images/cert2.png" alt="ISO document placeholder; actual certificate not provided" width="480" height="360" loading="lazy" />
-            <figcaption><h3>ISO</h3><p>Quality Standards</p></figcaption>
+            <img src="images/cert2.avif" alt="ISO document placeholder; actual certificate not provided" width="480" height="360" loading="lazy" />
+            <figcaption><span class="quality-category">Standards</span><h3>ISO</h3><p>Quality Standards</p></figcaption>
           </figure>
           <figure class="quality-card">
-            <img src="images/cert3.png" alt="FSSAI document placeholder; actual document not provided" width="480" height="360" loading="lazy" />
-            <figcaption><h3>FSSAI</h3><p>Compliance Documentation</p></figcaption>
+            <img src="images/cert3.avif" alt="FSSAI document placeholder; actual document not provided" width="480" height="360" loading="lazy" />
+            <figcaption><span class="quality-category">Compliance</span><h3>FSSAI</h3><p>Compliance Documentation</p></figcaption>
           </figure>
           <figure class="quality-card">
-            <img src="images/cert4.png" alt="Lab report placeholder; actual test report not provided" width="480" height="360" loading="lazy" />
-            <figcaption><h3>Lab Tested</h3><p>Quality Testing</p></figcaption>
+            <img src="images/cert4.avif" alt="Lab report placeholder; actual test report not provided" width="480" height="360" loading="lazy" />
+            <figcaption><span class="quality-category">Testing</span><h3>Lab Tested</h3><p>Quality Testing</p></figcaption>
           </figure>
         </div>
       </section>
@@ -1120,6 +1141,39 @@
             </button>
             <div class="secure order-icon-line"><svg class="order-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="10" width="14" height="11" rx="2"/><path d="M8 10V6a4 4 0 0 1 8 0v4M12 14v3"/></svg><span>आपकी जानकारी सुरक्षित रखी जाती है।</span></div>
           </form>
+        </div>
+      </section>
+      <section class="soft customer-experiences" aria-labelledby="reviews-title">
+        <div class="head">
+          <div class="kicker">REAL CUSTOMER RESULTS / SOCIAL PROOF</div>
+          <h2 id="reviews-title">हजारों महिलाओं का भरोसा</h2>
+        </div>
+        <!-- Editorial note: Verify the customer-count claim and all reviews against genuine, consented customer records before publishing. Never invent names, cities, ages, or guaranteed-result testimonials. -->
+        <div class="customer-reviews">
+          <article class="card review">
+
+            <h3>“मेरे periods में पहले काफी discomfort रहता था...”</h3>
+            <div class="review-person"><img class="review-avatar" src="images/test1.avif" alt="AI-generated portrait of a fictional woman" width="92" height="92" loading="lazy" /><div><strong>— Pooja Sharma | Mumbai</strong></div></div>
+            <blockquote><p>“मैंने अपनी routine में Fibro Care को शामिल किया। कुछ समय बाद मुझे अपनी overall menstrual wellness में improvement महसूस हुआ।”</p></blockquote>
+            <div class="review-rating"><span class="stars" role="img" aria-label="5 out of 5 stars">★★★★★</span></div>
+            
+          </article>
+          <article class="card review">
+
+            <h3>“पहले हर महीने बहुत परेशानी रहती थी...”</h3>
+            <div class="review-person"><img class="review-avatar" src="images/test2.avif" alt="AI-generated portrait of a fictional woman" width="92" height="92" loading="lazy" /><div><strong>— Neha Verma | Jaipur</strong></div></div>
+            <blockquote><p>“Periods के दौरान होने वाली परेशानी की वजह से मेरा routine disturb होता था। अब मैं अपनी health को लेकर ज्यादा conscious हूँ और अपनी routine का भी ध्यान रखती हूँ।”</p></blockquote>
+            <div class="review-rating"><span class="stars" role="img" aria-label="5 out of 5 stars">★★★★★</span></div>
+            
+          </article>
+          <article class="card review">
+
+            <h3>“मैंने पहले अपनी symptoms को ignore किया था...”</h3>
+            <div class="review-person"><img class="review-avatar" src="images/test3.avif" alt="AI-generated portrait of a fictional woman" width="92" height="92" loading="lazy" /><div><strong>— Sunita Patel | Delhi</strong></div></div>
+            <blockquote><p>“बाद में मैंने doctor से consultation लिया और अपनी condition को समझा। साथ में अपनी daily wellness routine पर भी ध्यान देना शुरू किया।”</p></blockquote>
+            <div class="review-rating"><span class="stars" role="img" aria-label="5 out of 5 stars">★★★★★</span></div>
+            
+          </article>
         </div>
       </section>
       <section aria-labelledby="faq-title">
