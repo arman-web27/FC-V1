@@ -711,19 +711,15 @@
         color: #8c7c84;
         font-size: 9px; line-height: 1.65;
       }
-      .policy {
-        padding: 0 8px 82px;
-        background: var(--blush);
-        display: flex;
-        gap: 13px;
-        justify-content: center;
-        flex-wrap: wrap;
-      }
-      .policy button {
-        border: 0;
-        background: none;
-        color: #8c7c84;
-        font-size: 9px; cursor: pointer;
+      .policy { background: var(--blush); padding: 8px 12px 80px; }
+      .pl-row { max-width: 450px; width: 100%; margin: 0 auto; display: flex; gap: 0; flex-wrap: nowrap; align-items: center; justify-content: center; }
+      .policy .pl-link { background: none; border: none; font: 500 7px/1.5 Hind, sans-serif; opacity: .44; color: var(--plum); cursor: pointer; padding: 4px 5px; text-decoration: underline; text-underline-offset: 2px; white-space: nowrap; transition: color .15s; }
+      .pl-sep { color: #d9bdca; font-size: 11px; user-select: none; }
+      .policy .pl-link:hover, .policy .pl-link:focus-visible { color: #4e1730; opacity: 1; }
+      @media (max-width: 480px) {
+        .policy { padding: 8px 4px 80px; }
+        .policy .pl-link { font-size: 6px; padding: 4px 2px; }
+        .pl-sep { font-size: 6px; }
       }
       .sticky {
         position: fixed;
@@ -806,6 +802,24 @@
       .pp-cval { font-size: 13px; color: var(--plum); overflow-wrap: anywhere; }
       .policy button:hover { color: var(--plum); text-decoration: underline; }
       .policy button:focus-visible { outline: 2px solid var(--plum); outline-offset: 3px; }
+      #modal { background: rgba(0,0,0,.45); z-index: 9999; padding: 0; }
+      #modal .modal-box { width: 90%; max-width: 420px; max-height: 80vh; max-height: 80dvh; padding: 22px 18px 18px; border-radius: 18px; }
+      #modal .modal-close { top: 14px; right: 14px; display: grid; place-items: center; width: 30px; height: 30px; border-radius: 50%; background: var(--blush); color: var(--plum); font-size: 20px; cursor: pointer; }
+      #modal .modal-close:hover { background: #efd3df; }
+      .pp-mtitle { gap: 8px; margin-bottom: 4px; padding-right: 32px; }
+      .pp-mtitle h2 { font-size: 17px; line-height: 1.5; }
+      #modalContent svg { width: 20px; height: 20px; }
+      .pp-mbadge { padding: 2px 10px; border-radius: 999px; margin-bottom: 12px; font-size: 11px; font-weight: 600; color: var(--plum); background: var(--blush); }
+      #modalContent .pp-mpara { font-size: 14px; color: #333; line-height: 1.7; margin-bottom: 10px; }
+      .pp-mlist { list-style: none; padding: 0; margin: 0 0 10px; }
+      .pp-mlist li { position: relative; margin: 0; padding: 5px 0 5px 20px; border-bottom: 1px dashed var(--line); font-size: 14px; color: #333; line-height: 1.6; }
+      .pp-mlist li:last-child { border-bottom: none; }
+      .pp-mlist li::before { content: ""; position: absolute; left: 4px; top: 13px; width: 7px; height: 7px; border-radius: 50%; background: var(--rose); }
+      .pp-mhl { margin: 0 0 10px; padding: 9px 13px; border-left-color: var(--plum); border-radius: 0 8px 8px 0; }
+      .pp-cgrid { gap: 8px; margin-top: 8px; }
+      .pp-citem { background: #fff7fa; padding: 10px; border-radius: 10px; text-align: center; }
+      .pp-clbl { font-size: 11px; margin: 0 0 2px; }
+      .pp-cval { font-size: 11px; font-weight: 600; }
       .spinner {
         width: 35px;
         height: 35px;
@@ -1201,13 +1215,16 @@
         सकते हैं। Pregnancy, breastfeeding, ongoing medication या diagnosed
         condition में उपयोग से पहले medical advice लें।
       </div>
-      <div class="policy">
-        <button data-modal="privacy">Privacy</button
-        ><button data-modal="terms">Terms</button
-        ><button data-modal="shipping">Shipping</button
-        ><button data-modal="contact">Contact</button
-        ><button data-modal="cancel">Cancellation</button><button data-modal="disclaimer">Legal Disclaimer</button>
-      </div>
+      <footer class="policy">
+        <nav class="pl-row" aria-label="Policies and contact">
+          <button type="button" class="pl-link" data-modal="privacy">Privacy Policy</button><span class="pl-sep" aria-hidden="true">|</span>
+          <button type="button" class="pl-link" data-modal="terms">Terms &amp; Conditions</button><span class="pl-sep" aria-hidden="true">|</span>
+          <button type="button" class="pl-link" data-modal="shipping">Shipping Policy</button><span class="pl-sep" aria-hidden="true">|</span>
+          <button type="button" class="pl-link" data-modal="cancel">Cancellation Policy</button><span class="pl-sep" aria-hidden="true">|</span>
+          <button type="button" class="pl-link" data-modal="contact">Contact Us</button><span class="pl-sep" aria-hidden="true">|</span>
+          <button type="button" class="pl-link" data-modal="disclaimer">Legal Disclaimer</button>
+        </nav>
+      </footer>
       <div class="sticky" id="sticky">
         <a href="#order-form"><svg class="sticky-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 7h14l1 14H4L5 7Z"/><path d="M8 8V6a4 4 0 0 1 8 0v2"/></svg><span>अभी Order करें</span></a>
       </div>
