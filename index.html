@@ -286,11 +286,13 @@
       .sign-step { min-height: 180px; display: grid; grid-template-columns: 1fr 1fr; gap: 20px; align-items: center; }
       .sign-image { width: min(100%, 154px); aspect-ratio: 1; justify-self: center; border: 7px solid white; border-radius: 50%; background: var(--cream); box-shadow: 0 8px 22px #6f234622; overflow: hidden; }
       .sign-image img { display: block; width: 100%; height: 100%; }
+      .sign-step:first-of-type .sign-image { transform: translateY(24px); }
       .sign-step:first-of-type .sign-copy { padding-left: 18px; }
       .sign-copy h3 { color: var(--plum); font-size: 19px; line-height: 1.3; margin: 0 0 7px; }
       .sign-copy p { font-size: 16px; line-height: 1.5; margin: 0; }
       .sign-step:nth-of-type(even) .sign-image { grid-column: 2; grid-row: 1; }
       .sign-step:nth-of-type(even) .sign-copy { grid-column: 1; grid-row: 1; text-align: right; }
+      .sign-step:last-of-type .sign-copy { padding-right: 24px; }
       @media (max-width: 360px) { .sign-step { gap: 12px; } .sign-copy h3 { font-size: 17px; } .sign-copy p { font-size: 14px; } }
       .caution {
         margin-top: 14px;
@@ -876,7 +878,7 @@
           <svg class="signs-road" viewBox="0 0 436 1080" preserveAspectRatio="none" aria-hidden="true">
             <defs>
               <linearGradient id="signs-gradient" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#ccdcd0"/><stop offset=".5" stop-color="#e8a6b7"/><stop offset="1" stop-color="#bf7896"/></linearGradient>
-              <path id="signs-path" d="M-20 12H108C240 12 240 180 218 180S318 180 318 270 118 360 118 450 318 540 318 630 118 720 118 810 318 900 318 990Q318 1068 218 1068H-20"/>
+              <path id="signs-path" d="M181 114C250 114 318 180 318 270S118 360 118 450 318 540 318 630 118 720 118 810C118 900 218 990 255 990"/>
             </defs>
             <use href="#signs-path" fill="none" stroke="url(#signs-gradient)" stroke-width="32"/>
             <use href="#signs-path" fill="none" stroke="#6f2346" stroke-opacity=".45" stroke-width="2" stroke-dasharray="10 13"/>
