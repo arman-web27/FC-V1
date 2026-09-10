@@ -33,8 +33,8 @@
      multi-character injection (contact strip / keyboard suggestions).
    - Detects :-webkit-autofill and clears the field.
    - Watchdog reverts values injected with no events at all (iOS).
-   - Touch devices get a built-in secure numeric keypad for phone/PIN, so
-     the native keyboard -- and its AutoFill Contact strip -- never opens.
+   - Numeric fields open the device's own number pad (inputmode="numeric")
+     while still refusing anything that was not typed one digit at a time.
    - Canonicalizes Indian phone numbers: +91 / 91 / 0091 / 0 prefixes are
      stripped only when the number is longer than 10 digits, so a genuine
      9131194906 is never truncated.
@@ -46,7 +46,22 @@
    data-len      exact length required (phone defaults 10, pin 6)
    data-min      minimum length (default 1, name 2)
    data-error    custom validation message
-   data-keypad   "off" to force the native keyboard on a numeric field
+
+   OPTIONS
+   ---------------------------------------------------------------------
+   endpoint       URL to POST the form to (omit if the page submits itself)
+   form           selector or element         (default: 'form')
+   redirect       URL to go to after submit
+   redirectDelay  ms before redirecting anyway  (default 2000)
+   loader         selector of an overlay toggled with .show while sending
+   takeover       false = only protect + validate, let the existing form
+                  handler submit. Use this with Contact Form 7, WPForms,
+                  Elementor Forms, or any plugin that owns submission.
+                  (default: true when `endpoint` is set, else false)
+   onChange       fn(values, key)   -- fires on every accepted keystroke
+   beforeSubmit   fn(form, values)  -- return false to abort
+   onInvalid      fn(key, message, el)
+   onSuccess      fn(ok) / onError  fn(err)
    ========================================================================== */
 (function (global) {
   "use strict";
@@ -60,31 +75,6 @@
     "input[data-secure]:-webkit-autofill{animation-name:sfAutoFillStart;animation-duration:1ms;}",
     "input[data-secure]:not(:-webkit-autofill){animation-name:sfAutoFillCancel;animation-duration:1ms;}",
     "input[data-secure]{-webkit-touch-callout:none;}",
-    /* user-select:none makes an editable input untypable on older iOS,
-           so it is limited to the readonly keypad-driven fields. */
-    "input[data-secure].sf-keypad-mode{-webkit-user-select:none;user-select:none;}",
-    "input[data-secure].sf-keypad-mode{caret-color:transparent;cursor:pointer;}",
-    ".sf-backdrop{position:fixed;top:0;right:0;bottom:0;left:0;",
-    "background:rgba(20,14,32,.45);display:none;z-index:99998;}",
-    ".sf-backdrop.sf-show{display:block;}",
-    ".sf-keypad{position:fixed;left:50%;bottom:0;transform:translateX(-50%) translateY(110%);",
-    "width:100%;max-width:450px;background:#fff;z-index:99999;border-radius:22px 22px 0 0;",
-    "padding:14px 14px calc(14px + env(safe-area-inset-bottom));",
-    "box-shadow:0 -10px 30px rgba(20,14,32,.22);transition:transform .28s ease;",
-    "font-family:inherit;}",
-    ".sf-keypad.sf-show{transform:translateX(-50%) translateY(0);}",
-    ".sf-keypad-head{display:flex;align-items:center;justify-content:space-between;",
-    "padding:2px 6px 12px;font-size:13px;color:#6B5E7D;font-weight:600;}",
-    ".sf-keypad-val{font-size:20px;font-weight:700;color:var(--sf-accent,#5B3A8E);",
-    "letter-spacing:2px;font-variant-numeric:tabular-nums;min-height:24px;}",
-    ".sf-keypad-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;}",
-    ".sf-keypad-grid button{font-family:inherit;font-size:22px;font-weight:700;color:#2C1E45;",
-    "background:#F4F1F8;border:1px solid #E3DCEE;border-radius:14px;padding:14px 0;cursor:pointer;",
-    "-webkit-tap-highlight-color:transparent;transition:background .15s ease,transform .1s ease;}",
-    ".sf-keypad-grid button:active{background:#E6DFF3;transform:scale(.97);}",
-    ".sf-keypad-grid button.sf-act{font-size:15px;color:var(--sf-accent,#5B3A8E);}",
-    ".sf-keypad-grid button.sf-done{background:var(--sf-accent,#5B3A8E);",
-    "border-color:var(--sf-accent,#5B3A8E);color:#fff;grid-column:1/-1;}",
   ].join("");
 
   var cssDone = false;
@@ -149,7 +139,7 @@
       },
       normalize: normalizeIndianPhone,
       len: 10,
-      keypad: true,
+      numeric: true,
       singleChar: true,
       valid: function (v) {
         return /^[6-9][0-9]{9}$/.test(v);
@@ -161,7 +151,7 @@
         return String(v).replace(/\D/g, "").slice(0, 6);
       },
       len: 6,
-      keypad: true,
+      numeric: true,
       singleChar: true,
       valid: function (v) {
         return /^[1-9][0-9]{5}$/.test(v);
@@ -172,7 +162,7 @@
       clean: function (v) {
         return String(v).replace(/\D/g, "");
       },
-      keypad: true,
+      numeric: true,
       singleChar: true,
     },
   };
@@ -181,89 +171,6 @@
     var v = el.getAttribute(n);
     return v === null || v === "" ? fallback : v;
   }
-
-  /* -------------------------------------------------------------- keypad */
-  var Keypad = (function () {
-    var panel,
-      backdrop,
-      readout,
-      grid,
-      active = null,
-      built = false;
-
-    function build() {
-      if (built) return;
-      built = true;
-      backdrop = document.createElement("div");
-      backdrop.className = "sf-backdrop";
-
-      panel = document.createElement("div");
-      panel.className = "sf-keypad";
-      panel.setAttribute("role", "dialog");
-      panel.setAttribute("aria-label", "Secure number pad");
-      panel.innerHTML =
-        '<div class="sf-keypad-head"><span>&#128274; Secure Entry</span>' +
-        '<span class="sf-keypad-val"></span></div>' +
-        '<div class="sf-keypad-grid">' +
-        '<button type="button" data-k="1">1</button>' +
-        '<button type="button" data-k="2">2</button>' +
-        '<button type="button" data-k="3">3</button>' +
-        '<button type="button" data-k="4">4</button>' +
-        '<button type="button" data-k="5">5</button>' +
-        '<button type="button" data-k="6">6</button>' +
-        '<button type="button" data-k="7">7</button>' +
-        '<button type="button" data-k="8">8</button>' +
-        '<button type="button" data-k="9">9</button>' +
-        '<button type="button" class="sf-act" data-k="clear">Clear</button>' +
-        '<button type="button" data-k="0">0</button>' +
-        '<button type="button" class="sf-act" data-k="back">&#9003;</button>' +
-        '<button type="button" class="sf-done" data-k="done">Done</button>' +
-        "</div>";
-
-      document.body.appendChild(backdrop);
-      document.body.appendChild(panel);
-      readout = panel.querySelector(".sf-keypad-val");
-      grid = panel.querySelector(".sf-keypad-grid");
-
-      grid.addEventListener("click", function (e) {
-        var btn = e.target.closest("button[data-k]");
-        if (!btn || !active) return;
-        var k = btn.getAttribute("data-k");
-        if (k === "done") {
-          close();
-          return;
-        }
-        if (k === "clear") active.set("");
-        else if (k === "back") active.set(active.value.slice(0, -1));
-        else active.set(active.value + k);
-        render();
-        if (active && active.max && active.value.length >= active.max) close();
-      });
-      backdrop.addEventListener("click", close);
-    }
-
-    function render() {
-      if (readout) readout.textContent = active ? active.value : "";
-    }
-
-    function open(f) {
-      build();
-      if (active === f) return;
-      active = f;
-      f.el.blur(); // keep the native keyboard away
-      panel.classList.add("sf-show");
-      backdrop.classList.add("sf-show");
-      render();
-    }
-
-    function close() {
-      active = null;
-      if (panel) panel.classList.remove("sf-show");
-      if (backdrop) backdrop.classList.remove("sf-show");
-    }
-
-    return { open: open, close: close, refresh: render };
-  })();
 
   /* ------------------------------------------------------------ instance */
   function SecureFormInstance(opts) {
@@ -277,10 +184,8 @@
 
     injectCSS();
     this.form.setAttribute("autocomplete", "off");
+    this.form.setAttribute("data-sf-active", "1");
     this.fields = [];
-    this.isTouch = !!(
-      global.matchMedia && global.matchMedia("(pointer: coarse)").matches
-    );
 
     var list = this.form.querySelectorAll("[data-secure]");
     Array.prototype.forEach.call(list, function (el) {
@@ -347,6 +252,11 @@
 
   SecureFormInstance.prototype._attach = function (el) {
     var self = this;
+    /* Dobara attach karne par `name` pehle hi hataya ja chuka hota hai,
+           to key id par gir jaati aur mirror galat naam se banta. */
+    if (el.getAttribute("data-sf-attached")) return null;
+    el.setAttribute("data-sf-attached", "1");
+
     var typeName = el.getAttribute("data-secure") || "text";
     var spec = TYPES[typeName] || TYPES.text;
 
@@ -360,11 +270,14 @@
     el.setAttribute("autocorrect", "off");
     el.setAttribute("autocapitalize", "off");
     el.setAttribute("spellcheck", "false");
-    if (spec.keypad) {
-      /* type=tel is a semantic autofill target; text+inputmode still
-               gives the numeric keyboard on desktop/laptop browsers. */
+    if (spec.numeric) {
+      /* type=tel is a semantic autofill target, so it is downgraded
+               to text -- inputmode still opens the device number pad. */
       if (el.type === "tel") el.type = "text";
       el.setAttribute("inputmode", "numeric");
+      // Older iOS needs pattern="[0-9]*" to show the number pad, but a
+      // stricter pattern already on the field is left alone.
+      if (!el.getAttribute("pattern")) el.setAttribute("pattern", "[0-9]*");
     }
 
     var f = {
@@ -400,7 +313,6 @@
     f.set = function (v) {
       f.value = f.clean(v);
       f.paint();
-      Keypad.refresh();
     };
 
     /* Only a change reachable by real typing is accepted. */
@@ -487,24 +399,6 @@
       }
     });
 
-    /* Secure keypad on touch: the native keyboard (and its AutoFill
-           Contact strip) never opens for numeric fields. */
-    if (
-      this.isTouch &&
-      spec.keypad &&
-      el.getAttribute("data-keypad") !== "off"
-    ) {
-      f.keypad = true;
-      el.classList.add("sf-keypad-mode");
-      el.setAttribute("readonly", "readonly"); // also kills native paste
-      el.addEventListener("focus", function () {
-        Keypad.open(f);
-      });
-      el.addEventListener("click", function () {
-        Keypad.open(f);
-      });
-    }
-
     this.fields.push(f);
     return f;
   };
@@ -529,7 +423,6 @@
 
   /** Always Start With Blank Customer Fields. */
   SecureFormInstance.prototype.reset = function () {
-    Keypad.close();
     this.fields.forEach(function (f) {
       f.value = "";
       f.blocked = "";
@@ -570,28 +463,23 @@
     var f = bad.field;
     if (typeof this.opts.onInvalid === "function") {
       this.opts.onInvalid(f.key, bad.message, f.el);
-    } else if (f.el.hasAttribute("readonly")) {
-      /* A readonly control is barred from native constraint validation,
-               so on touch we surface the message ourselves. */
-      if (global.Swal) {
-        global.Swal.fire({
-          icon: "warning",
-          title: "जानकारी अधूरी है",
-          text: bad.message,
-          confirmButtonColor: "#5B3A8E",
-        });
-      } else {
-        alert(bad.message);
-      }
-    } else {
+    } else if (f.el.reportValidity) {
       f.el.setCustomValidity(bad.message);
       f.el.reportValidity();
       setTimeout(function () {
         f.el.setCustomValidity("");
       }, 2000);
+    } else if (global.Swal) {
+      global.Swal.fire({
+        icon: "warning",
+        title: "जानकारी अधूरी है",
+        text: bad.message,
+        confirmButtonColor: "#5B3A8E",
+      });
+    } else {
+      alert(bad.message);
     }
-    if (f.keypad) Keypad.open(f);
-    else f.el.focus();
+    f.el.focus();
   };
 
   SecureFormInstance.prototype._loader = function (on) {
@@ -606,12 +494,11 @@
 
   SecureFormInstance.prototype._submit = function (e) {
     var self = this;
-    e.preventDefault();
-    Keypad.close();
     this.commit();
 
     var bad = this.validate();
     if (bad) {
+      e.preventDefault();
       this._reportInvalid(bad);
       return false;
     }
@@ -620,8 +507,18 @@
       typeof this.opts.beforeSubmit === "function" &&
       this.opts.beforeSubmit(this.form, this.values()) === false
     ) {
+      e.preventDefault();
       return false;
     }
+
+    /* takeover:false -- protect and validate only, then step aside so the
+           form's own handler submits it (Contact Form 7, WPForms, Elementor,
+           a theme's AJAX, ...). Defaults to true when an endpoint is given. */
+    var takeover = this.opts.takeover;
+    if (takeover === undefined) takeover = !!this.opts.endpoint;
+    if (!takeover) return true;
+
+    e.preventDefault();
 
     var btn = this.form.querySelector(
       'button[type="submit"], input[type="submit"]',
@@ -674,6 +571,13 @@
       opts = opts || {};
       if (!opts.form) opts.form = "form";
       function start() {
+        /* init() do baar chal jaaye (duplicate script tag, WordPress me
+                   snippet dobara load) to dobara attach mat karo. */
+        var el =
+          typeof opts.form === "string"
+            ? document.querySelector(opts.form)
+            : opts.form;
+        if (el && el.getAttribute("data-sf-active")) return;
         API.instance = new SecureFormInstance(opts);
       }
       if (document.readyState === "loading") {
@@ -684,7 +588,6 @@
       return API;
     },
     normalizeIndianPhone: normalizeIndianPhone,
-    Keypad: Keypad,
   };
 
   global.SecureForm = API;
