@@ -1075,13 +1075,14 @@
       </section>
     
       <section class="soft" id="order-form">
+          
         <div class="head">
           <div class="kicker">Quick order</div>
           <h2 class="order-heading"><svg class="order-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 3h2l3 12h11l3-9H6M9 20h.01M18 20h.01"/><circle cx="9" cy="20" r="1"/><circle cx="18" cy="20" r="1"/></svg><span>अपना Order अभी दर्ज करें</span></h2>
           <p>सिर्फ 2 जानकारी भरें</p>
         </div>
         <div class="form-card">
-          <form id="orderForm" onsubmit="return submitForm(event);">
+          <form id="orderForm">
             <input type="hidden" name="key" value="XQP4bdtEZkt3" /><input
               type="hidden"
               name="date"
@@ -1109,7 +1110,7 @@
               <label for="name">पूरा नाम *</label
               ><input
                 id="name"
-                name="name"
+                type="text" name="Name"    data-secure="name"
                 autocomplete="name" pattern="[A-Za-z]+( [A-Za-z]+)*" aria-describedby="nameError" title="Use English letters and spaces only"
                 required
                 placeholder="अपना नाम English में लिखें"
@@ -1120,8 +1121,7 @@
               <label for="phone">Mobile Number *</label
               ><input
                 id="phone"
-                name="phone"
-                type="tel"
+               type="tel" name="Mobile"  data-secure="phone"
                 inputmode="numeric" autocomplete="tel-national" pattern="[6-9][0-9]{9}" aria-describedby="phoneError" title="Enter 10 digits starting with 6, 7, 8 or 9"
                 maxlength="10"
                 required
@@ -1132,7 +1132,7 @@
               </div>
             </div>
             <div class="benefit order-icon-line"><svg class="order-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 8h18v4H3zM5 12v9h14v-9M12 8v13M12 8H8a3 3 0 1 1 3-3l1 3Zm0 0h4a3 3 0 1 0-3-3l-1 3Z"/></svg><span>10% OFF + FREE Diet Chart + COD</span></div>
-            <button class="cta" id="submitBtn">
+            <button type="submit" class="cta" id="submitBtn">
               मेरा Order Confirm करें →
             </button>
             <div class="secure order-icon-line"><svg class="order-icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="10" width="14" height="11" rx="2"/><path d="M8 10V6a4 4 0 0 1 8 0v4M12 14v3"/></svg><span>आपकी जानकारी सुरक्षित रखी जाती है।</span></div>
@@ -1243,6 +1243,9 @@
         </div>
       </div>
     </main>
+    <script src="secure-form.js"></script>
+    
+        <script src="script.js"></script>
     <script>
       const $ = (s) => document.querySelector(s),
         $$ = (s) => [...document.querySelectorAll(s)];
@@ -1267,94 +1270,7 @@
       }
       addEventListener("scroll", stickyState, { passive: true });
       stickyState();
-      const UTM = [
-        "utm_source",
-        "utm_medium",
-        "utm_campaign",
-        "utm_campaign_id",
-        "utm_adset",
-        "utm_adset_id",
-        "utm_ad",
-        "utm_ad_id",
-        "utm_placement",
-      ];
-      function setHidden(n, v) {
-        const i = document.querySelector(`#orderForm input[name="${n}"]`);
-        if (i) i.value = v || "";
-      }
-      function capture() {
-        const p = new URLSearchParams(location.search);
-        UTM.forEach((k) => {
-          const v = p.get(k) || sessionStorage.getItem(k) || "";
-          setHidden(k, v);
-          if (p.get(k))
-            try {
-              sessionStorage.setItem(k, p.get(k));
-            } catch (_) {}
-        });
-        setHidden("fbclid", p.get("fbclid"));
-      }
-      capture();
-      $("#name").oninput = (e) =>
-        (e.target.value = e.target.value
-          .replace(/[^A-Za-z ]/g, "")
-          .replace(/\s{2,}/g, " "));
-      let lastAcceptedPhone = "";
-      $("#phone").oninput = (e) => {
-        const input = e.target;
-        const digits = input.value.replace(/\D/g, "").slice(0, 10);
-        const invalidStart = digits.length > 0 && !/^[6-9]/.test(digits);
-        input.value = invalidStart ? lastAcceptedPhone : digits;
-        lastAcceptedPhone = input.value;
-        input.setCustomValidity("");
-        input.setAttribute("aria-invalid", "false");
-        $("#phoneError").classList.toggle("show", invalidStart);
-      };
-      function submitForm(e) {
-        e.preventDefault();
-        const n = $("#name").value.trim(),
-          p = $("#phone").value.trim(),
-          no = /^[A-Za-z]+(?: [A-Za-z]+)*$/.test(n),
-          po = /^[6-9]\d{9}$/.test(p);
-        $("#nameError").classList.toggle("show", !no);
-        $("#phoneError").classList.toggle("show", !po);
-        if (!no || !po) return false;
-        capture();
-        $("#date").value = new Date().toLocaleString("en-IN", {
-          timeZone: "Asia/Kolkata",
-        });
-        $("#event_id").value = crypto.randomUUID
-          ? crypto.randomUUID()
-          : "evt-" + Date.now();
-        $("#loading").classList.add("show");
-        if (typeof fbq === "function")
-          fbq(
-            "track",
-            "Lead",
-            { content_name: "FibroCare" },
-            { eventID: $("#event_id").value },
-          );
-        const endpoint = "https://script.google.com/macros/s//exec";
-        if (endpoint.endsWith("/macros/s//exec")) {
-          setTimeout(() => {
-            $("#loading").classList.remove("show");
-            alert(
-              "Form endpoint अभी configure नहीं है। अपना Google Apps Script URL जोड़ें।",
-            );
-          }, 350);
-          return false;
-        }
-        fetch(endpoint, { method: "POST", body: new FormData(e.target) })
-          .then((r) => {
-            if (!r.ok) throw Error();
-            location.href = "./Thankyou.html";
-          })
-          .catch(() => {
-            $("#loading").classList.remove("show");
-            alert("नेटवर्क समस्या के कारण request नहीं भेजी जा सकी।");
-          });
-        return false;
-      }
+ 
       const policyIcon = (path) => `<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">${path}</svg>`;
       const ICO = {
         shield: policyIcon('<path d="M12 3 3 7v5c0 5 9 9 9 9s9-4 9-9V7l-9-4Z"/>'),
